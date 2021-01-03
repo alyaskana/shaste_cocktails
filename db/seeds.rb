@@ -1,7 +1,41 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+Cocktail.destroy_all
+
+puts "Destroyed everything you touch"
+
+cocktails = [
+  {
+    user_id: 1,
+    title: "Б-52",
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/b-52.png")),
+    description: "Это крепкий сладкий шот на кофейном ликёре с добавлением айриш крима и трипл сека. На вкус он сладкий и сливочно-кофейный. Верхний слой шота поджигается, и коктейль нужно быстро выпить через трубочку: не только вкусно, но и зрелищно.",
+    directions: "1. Налей в стопку кофейный ликер 15 мл
+    2. Используя коктейльную ложку, уложи слой айриш крим 15 мл и слой ликера трипл сек 15 мл
+    3. Поджигай, вооружайся трубочками и угощай!"
+  },
+  {
+    user_id: 1,
+    title: "Маргарита",
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/Margarita.jpg")),
+    description: 'Это солоноватый кислый коктейль на текиле с лаймовым соком. Бармены во всем мире очень любят создавать твисты на этот классический коктейль, но окаёмка из соли практически всегда остаётся неизменным украшением "Маргариты".',
+    directions: "1. Сделай на бокале для маргариты соленую окаемку
+    2. Налей в шейкер лаймовый сок 30 мл, сахарный сироп 10 мл, ликер трипл сек 25 мл и серебряную текилу 50 мл
+    3. Наполни шейкер кубиками льда и взбей
+    4. Перелей через стрейнер в охлажденный бокал для маргариты
+    5. Укрась кружком лайма"
+  },
+  {
+    user_id: 1,
+    title: "Джин тоник",
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/jin-tonik.png")),
+    description: "Это бессмертный микс джина и тоника, который подается, наверное, в каждом баре Земли. Травяной и немного горький коктейль прекрасно освежает и тонизирует.",
+    directions: "1. Наполни хайбол кубиками льда доверху
+    2. Налей джин 50 мл
+    3. Долей тоник доверху и аккуратно размешай коктейльной ложкой
+    4. Укрась кружками лайма"
+  },
+]
+
+cocktails.each do |cocktail|
+  cocktailik = Cocktail.create(cocktail)
+  puts "Some magic just create a #{ cocktailik.title } with id #{ cocktailik.id }!"
+end

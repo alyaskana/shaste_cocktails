@@ -17,7 +17,7 @@
     <tr>
       <td><%= cocktail.user_id %></td>
       <td><%= cocktail.title %></td>
-      <td><%= cocktail.image %></td>
+      <td><%= image_tag(cocktail.image.thumb.url, alt: 'Image') if cocktail.image? %></td>
       <td><%= cocktail.description %></td>
       <td><%= cocktail.directions %></td>
       <td><%= link_to 'Show', cocktail %></td>
