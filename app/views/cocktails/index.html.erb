@@ -19,7 +19,7 @@
       <td><%= cocktail.title %></td>
       <td><%= image_tag(cocktail.image.thumb.url, alt: 'Image') if cocktail.image? %></td>
       <td><%= cocktail.description %></td>
-      <td><%= cocktail.directions %></td>
+      <td><%= cocktail.directions.html_safe %></td>
       <td><%= link_to 'Show', cocktail %></td>
     </tr>
     <% end %>

@@ -19,7 +19,7 @@
 
 <p>
   <strong>Directions:</strong>
-  <%= @cocktail.directions %>
+  <%= @cocktail.directions.html_safe %>
 </p>
 
 <% if user_signed_in? && current_user.id == @cocktail.user_id  %>
