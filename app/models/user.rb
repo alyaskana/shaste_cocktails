@@ -6,4 +6,6 @@ class User < ApplicationRecord
   validates :login, :presence => true, uniqueness: true
   validates :first_name, :presence => true
   validates :email, uniqueness: true
+
+  has_many :cocktails, dependent: :destroy
 end
