@@ -2,8 +2,17 @@ Cocktail.destroy_all
 
 puts "Destroyed everything you touch"
 
+user = User.first_or_create!({
+  email: "ialina240200@gmail.com",
+  login: "alyaskana",
+  first_name: "Alina",
+  last_name: 'Bychkova',
+  password: 'qwerty'
+})
+
 cocktails = [
   {
+    user_id: user.id,
     title: "Б-52",
     image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/b-52.png")),
     description: "Это крепкий сладкий шот на кофейном ликёре с добавлением айриш крима и трипл сека. На вкус он сладкий и сливочно-кофейный. Верхний слой шота поджигается, и коктейль нужно быстро выпить через трубочку: не только вкусно, но и зрелищно.",
@@ -12,6 +21,7 @@ cocktails = [
     3. Поджигай, вооружайся трубочками и угощай!"
   },
   {
+    user_id: user.id,
     title: "Маргарита",
     image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/Margarita.jpg")),
     description: 'Это солоноватый кислый коктейль на текиле с лаймовым соком. Бармены во всем мире очень любят создавать твисты на этот классический коктейль, но окаёмка из соли практически всегда остаётся неизменным украшением "Маргариты".',
@@ -22,6 +32,7 @@ cocktails = [
     5. Укрась кружком лайма"
   },
   {
+    user_id: user.id,
     title: "Джин тоник",
     image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/jin-tonik.png")),
     description: "Это бессмертный микс джина и тоника, который подается, наверное, в каждом баре Земли. Травяной и немного горький коктейль прекрасно освежает и тонизирует.",
