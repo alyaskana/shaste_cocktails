@@ -7,7 +7,7 @@ class Cocktail < ApplicationRecord
                     :length => { :minimum => 3 }
   validates :directions, :presence => true
 
-  has_many :cocktails_ingredients
+  has_many :cocktails_ingredients, dependent: :destroy
   has_many :ingredients, :through => :cocktails_ingredients
 
   has_many :cocktails_tastes

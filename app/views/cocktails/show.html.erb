@@ -9,6 +9,11 @@
 </p>
 
 <p>
+  <strong>Ingredients:</strong>
+  <%= cocktail_ingredients(@cocktail) %>
+</p>
+
+<p>
   <%= image_tag(@cocktail.image.url, alt: 'Image') if @cocktail.image? %>
 </p>
 
