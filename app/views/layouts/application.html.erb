@@ -12,10 +12,14 @@
 </head>
 
 <div class="top_menu">
+  <%= link_to 'Коктейли', cocktails_path %> |
   <% if user_signed_in? %>
-  <%= link_to 'Account', user_path(current_user) %> | <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+  <%= link_to 'Пользователи', users_path %> |
+  <% end %>
+  <% if user_signed_in? %>
+  <%= link_to 'Профиль', user_path(current_user) %> | <%= link_to 'Выйти', destroy_user_session_path, method: :delete %>
   <% else %>
-  <%= link_to 'Sign In', new_user_session_path %> | <%= link_to 'Sign Up', new_user_registration_path %>
+  <%= link_to 'Войти', new_user_session_path %> | <%= link_to 'Регистрация', new_user_registration_path %>
   <% end %>
 </div>
 

@@ -15,7 +15,7 @@
   <tbody>
     <% @cocktails.each do |cocktail| %>
     <tr>
-      <td><%= cocktail.user_id %></td>
+      <td><%= cocktail.user.login %></td>
       <td><%= cocktail.title %></td>
       <td><%= image_tag(cocktail.image.thumb.url, alt: 'Image') if cocktail.image? %></td>
       <td><%= cocktail.description %></td>
