@@ -25,7 +25,7 @@ class CocktailsController < ApplicationController
   # POST /cocktails
   # POST /cocktails.json
   def create
-    @cocktail = Cocktail.new(cocktail_params)
+    @cocktail = current_user.cocktails.new(cocktail_params)
 
     respond_to do |format|
       if @cocktail.save
@@ -70,6 +70,6 @@ class CocktailsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def cocktail_params
-      params.require(:cocktail).permit(:user_id, :title, :image, :description, :directions)
+      params.require(:cocktail).permit(:title, :image, :description, :directions)
     end
 end
