@@ -19,8 +19,10 @@
 </div>
 
 <div class="field">
-  <%= f.label :avatar %><br />
-  <%= f.text_field :avatar %>
+  <%= f.label :avatar %>
+  <div><%= image_tag(@user.avatar.thumb.url, alt: 'avatar') if @user.avatar? %></div>
+  <%= f.file_field :avatar %>
+  <%= f.hidden_field :avatar_cache %>
 </div>
 
 <div class="field">
