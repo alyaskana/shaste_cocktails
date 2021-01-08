@@ -4,6 +4,6 @@ class Post < ApplicationRecord
 
   mount_uploader :image, ImageUploader
 
-  has_many :posts_cocktails
+  has_many :posts_cocktails, dependent: :destroy
   has_many :cocktails, :through => :posts_cocktails
 end

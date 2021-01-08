@@ -70,6 +70,9 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:parent_id, :image, :content)
+      post_params = params.require(:post).permit(:parent_id, :image, :content, :cocktails)
+      cocktails = Cocktail.where(id: post_params[:cocktails])
+      post_params[:cocktails] = cocktails
+      post_params
     end
 end
