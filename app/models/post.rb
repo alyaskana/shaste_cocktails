@@ -1,6 +1,8 @@
 class Post < ApplicationRecord
   belongs_to :user
-  belongs_to :parent, class_name: "Post"
+  has_one :parent, class_name: "Post"
+
+  mount_uploader :image, ImageUploader
 
   has_many :posts_cocktails
   has_many :cocktails, :through => :posts_cocktails

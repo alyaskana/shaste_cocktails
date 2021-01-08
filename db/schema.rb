@@ -79,12 +79,11 @@ ActiveRecord::Schema.define(version: 2021_01_03_221713) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "parent_id", null: false
+    t.bigint "parent_id"
     t.string "image"
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["parent_id"], name: "index_posts_on_parent_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -155,7 +154,6 @@ ActiveRecord::Schema.define(version: 2021_01_03_221713) do
   add_foreign_key "favorites", "users"
   add_foreign_key "followers", "follower_ids"
   add_foreign_key "followers", "following_ids"
-  add_foreign_key "posts", "parents"
   add_foreign_key "posts", "users"
   add_foreign_key "posts_cocktails", "cocktails"
   add_foreign_key "posts_cocktails", "posts"
