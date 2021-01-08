@@ -1,18 +1,15 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <strong>User:</strong>
-  <%= @post.user_id %>
+  <strong>Author:</strong>
+  <%= @post.user.login %>
 </p>
 
 <p>
-  <strong>Parent:</strong>
-  <%= @post.parent_id %>
+  <strong>Cocktail:</strong>
+  <%= link_to post_cocktails(@post), cocktail_path(@post.cocktails.first) %>
 </p>
 
 <p>
-  <strong>Image:</strong>
-  <%= @post.image %>
+  <%= image_tag(@post.image.url, alt: 'Image') if @post.image? %>
 </p>
 
 <p>
