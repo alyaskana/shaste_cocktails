@@ -27,6 +27,16 @@
   <%= @cocktail.directions.html_safe %>
 </p>
 
+<p><%= @cocktail.favorites.count %> <%= (@cocktail.favorites.count) == 1 ? 'Favorite' : 'Favorites'%></p>
+<p>
+  <% pre_favorite = @cocktail.favorites.find { |favorite| favorite.user_id == current_user.id} %>
+  <% if pre_favorite %>
+  <%= button_to 'Unfavorite', cocktail_favorite_path(@cocktail, pre_favorite), method: :delete %>
+  <% else %>
+  <%= button_to 'Favorite', cocktail_favorites_path(@cocktail), method: :cocktail %>
+  <% end %>
+</p>
+
 <% if user_signed_in? && current_user.id == @cocktail.user_id  %>
 <%= link_to 'Edit', edit_cocktail_path(@cocktail) %> |
 <% end %>

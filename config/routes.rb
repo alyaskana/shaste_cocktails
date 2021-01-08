@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   resources :cocktails
   resources :users
 
+  resources :cocktails do
+    resources :favorites
+  end
   get 'cocktails/index'
 
   root 'cocktails#index'
