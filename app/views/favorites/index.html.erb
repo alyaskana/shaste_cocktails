@@ -1,0 +1,25 @@
+<h1>Favorites</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Ingredients</th>
+      <th>Image</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @favorites.each do |favorite| %>
+    <tr>
+      <td><%= favorite.cocktail.title %></td>
+      <td><%= cocktail_ingredients(favorite.cocktail) %></td>
+      <td><%= image_tag(favorite.cocktail.image.thumb.url, alt: 'Image') if favorite.cocktail.image? %></td>
+      <td><%= favorite.cocktail.description %></td>
+      <td><%= link_to 'Show', favorite.cocktail %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

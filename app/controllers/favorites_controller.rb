@@ -1,6 +1,10 @@
 class FavoritesController < ApplicationController
-  before_action :find_cocktail
+  before_action :find_cocktail, only: [:create, :destroy]
   before_action :find_favorite, only: [:destroy]
+
+  def index
+    @favorites = Favorite.where(user_id: current_user.id)
+  end
 
   def create
     if already_favorited?

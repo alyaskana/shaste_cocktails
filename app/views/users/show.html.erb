@@ -25,4 +25,5 @@
   <%= image_tag(@user.avatar.thumb.url, alt: 'avatar') if @user.avatar? %>
 </p>
 
+<%= link_to 'Избранное', favorites_path %>
 <%= link_to 'Edit', edit_user_registration_path %>

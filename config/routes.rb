@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :posts
   resources :cocktails
   resources :users
+  resources :favorites
 
   resources :cocktails do
     resources :favorites
