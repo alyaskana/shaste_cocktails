@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   resources :ingredients
   resources :posts
   resources :cocktails
-  resources :users
+  resources :users do 
+    member do
+      get :posts
+    end
+  end
   resources :favorites
 
   resources :cocktails do

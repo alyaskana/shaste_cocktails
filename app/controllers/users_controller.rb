@@ -7,6 +7,10 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def posts
+    @posts = Post.where(user_id: params[:id])
+  end
+
   # GET /users/1
   # GET /users/1.json
   def show
