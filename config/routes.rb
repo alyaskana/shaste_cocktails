@@ -12,7 +12,11 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     sessions: 'users/sessions'
   }
-
+  
+  namespace :api do
+    resources :cocktails
+  end
+  
   resources :ingredients
   resources :posts
   resources :cocktails
