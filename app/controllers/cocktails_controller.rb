@@ -6,6 +6,7 @@ class CocktailsController < ApplicationController
   # GET /cocktails.json
   def index
     @cocktails = Cocktail.all
+    render component: 'Cocktails', props: { cocktails: @cocktails.to_json(include: :user) }
   end
 
   # GET /cocktails/1
