@@ -12,8 +12,8 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     sessions: 'users/sessions'
   }
-  
-  namespace :api do
+
+  namespace :api, defaults: {format: 'json'} do
     resources :cocktails
   end
   
