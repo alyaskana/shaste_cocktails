@@ -1,1 +1,3 @@
-json.array! @cocktails, partial: "cocktails/cocktail", as: :cocktail
+json.cocktails do 
+  json.array! @cocktails, partial: "api/cocktails/cocktail", as: :cocktail
+end

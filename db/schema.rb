@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_03_221713) do
+ActiveRecord::Schema.define(version: 2021_03_25_074935) do
 
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string "data_file_name", null: false
@@ -42,13 +42,22 @@ ActiveRecord::Schema.define(version: 2021_01_03_221713) do
     t.index ["ingredient_id"], name: "index_cocktails_ingredients_on_ingredient_id"
   end
 
-  create_table "cocktails_tastes", force: :cascade do |t|
+  create_table "cocktails_likes", force: :cascade do |t|
+    t.integer "user_id", null: false
     t.integer "cocktail_id", null: false
-    t.integer "taste_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["cocktail_id"], name: "index_cocktails_tastes_on_cocktail_id"
-    t.index ["taste_id"], name: "index_cocktails_tastes_on_taste_id"
+    t.index ["cocktail_id"], name: "index_cocktails_likes_on_cocktail_id"
+    t.index ["user_id"], name: "index_cocktails_likes_on_user_id"
+  end
+
+  create_table "cocktails_tags", force: :cascade do |t|
+    t.integer "cocktail_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cocktail_id"], name: "index_cocktails_tags_on_cocktail_id"
+    t.index ["tag_id"], name: "index_cocktails_tags_on_tag_id"
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -96,6 +105,13 @@ ActiveRecord::Schema.define(version: 2021_01_03_221713) do
     t.index ["post_id"], name: "index_posts_cocktails_on_post_id"
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "tag_type"
+  end
+
   create_table "tasted_cocktails", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "cocktail_id", null: false
@@ -103,12 +119,6 @@ ActiveRecord::Schema.define(version: 2021_01_03_221713) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["cocktail_id"], name: "index_tasted_cocktails_on_cocktail_id"
     t.index ["user_id"], name: "index_tasted_cocktails_on_user_id"
-  end
-
-  create_table "tastes", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "user_ingredients", force: :cascade do |t|
@@ -122,8 +132,7 @@ ActiveRecord::Schema.define(version: 2021_01_03_221713) do
 
   create_table "users", force: :cascade do |t|
     t.string "login"
-    t.string "first_name"
-    t.string "last_name"
+    t.string "user_name"
     t.string "avatar"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -136,20 +145,13 @@ ActiveRecord::Schema.define(version: 2021_01_03_221713) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "want_to_try_cocktails", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "cocktail_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["cocktail_id"], name: "index_want_to_try_cocktails_on_cocktail_id"
-    t.index ["user_id"], name: "index_want_to_try_cocktails_on_user_id"
-  end
-
   add_foreign_key "cocktails", "users"
   add_foreign_key "cocktails_ingredients", "cocktails"
   add_foreign_key "cocktails_ingredients", "ingredients"
-  add_foreign_key "cocktails_tastes", "cocktails"
-  add_foreign_key "cocktails_tastes", "tastes"
+  add_foreign_key "cocktails_likes", "cocktails"
+  add_foreign_key "cocktails_likes", "users"
+  add_foreign_key "cocktails_tags", "cocktails"
+  add_foreign_key "cocktails_tags", "tags"
   add_foreign_key "favorites", "cocktails"
   add_foreign_key "favorites", "users"
   add_foreign_key "followers", "follower_ids"
@@ -161,6 +163,4 @@ ActiveRecord::Schema.define(version: 2021_01_03_221713) do
   add_foreign_key "tasted_cocktails", "users"
   add_foreign_key "user_ingredients", "ingredients"
   add_foreign_key "user_ingredients", "users"
-  add_foreign_key "want_to_try_cocktails", "cocktails"
-  add_foreign_key "want_to_try_cocktails", "users"
 end

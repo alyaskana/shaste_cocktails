@@ -5,8 +5,7 @@ puts "Destroyed everything you touch"
 user = User.first_or_create!({
   email: "ialina240200@gmail.com",
   login: "alyaskana",
-  first_name: "Alina",
-  last_name: 'Bychkova',
+  user_name: "Alina",
   password: 'qwerty'
 })
 
@@ -19,11 +18,23 @@ tonik = Ingredient.find_or_create_by!({name: 'тоник'})
 lime = Ingredient.find_or_create_by!({name: 'лайм'})
 sugar_syrup = Ingredient.find_or_create_by!({name: 'сахарный сироп'})
 
+tags = [
+  Tag.create!({name: 'сладкий', tag_type: 'taste'}),
+  Tag.create!({name: 'кислый', tag_type: 'taste'}),
+  Tag.create!({name: 'кисло-сладкий', tag_type: 'taste'}),
+  Tag.create!({name: 'горький', tag_type: 'taste'}),
+  Tag.create!({name: 'соленый', tag_type: 'taste'}),
+  Tag.create!({name: 'выпить', tag_type: 'goal'}),
+  Tag.create!({name: 'расслабиться', tag_type: 'goal'}),
+  Tag.create!({name: 'вечеринка с друзьями', tag_type: 'goal'})
+]
+
 cocktails = [
   {
     user_id: user.id,
     title: "Б-52",
     ingredients: [coffee_liquor, irish_cream, tripple_sek],
+    tags: tags,
     image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/b-52.png")),
     description: "Это крепкий сладкий шот на кофейном ликёре с добавлением айриш крима и трипл сека. На вкус он сладкий и сливочно-кофейный. Верхний слой шота поджигается, и коктейль нужно быстро выпить через трубочку: не только вкусно, но и зрелищно.",
     directions: "1. Налей в стопку кофейный ликер 15 мл
@@ -34,6 +45,7 @@ cocktails = [
     user_id: user.id,
     title: "Маргарита",
     ingredients: [lime, sugar_syrup, tripple_sek, ice],
+    tags: tags,
     image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/Margarita.jpg")),
     description: 'Это солоноватый кислый коктейль на текиле с лаймовым соком. Бармены во всем мире очень любят создавать твисты на этот классический коктейль, но окаёмка из соли практически всегда остаётся неизменным украшением "Маргариты".',
     directions: "1. Сделай на бокале для маргариты соленую окаемку
@@ -46,6 +58,7 @@ cocktails = [
     user_id: user.id,
     title: "Джин тоник",
     ingredients: [ice, gin, tonik, lime],
+    tags: tags,
     image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/jin-tonik.png")),
     description: "Это бессмертный микс джина и тоника, который подается, наверное, в каждом баре Земли. Травяной и немного горький коктейль прекрасно освежает и тонизирует.",
     directions: "1. Наполни хайбол кубиками льда доверху
