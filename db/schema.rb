@@ -70,12 +70,12 @@ ActiveRecord::Schema.define(version: 2021_03_25_074935) do
   end
 
   create_table "followers", force: :cascade do |t|
-    t.integer "follower_id_id", null: false
-    t.integer "following_id_id", null: false
+    t.integer "follower_id", null: false
+    t.integer "following_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["follower_id_id"], name: "index_followers_on_follower_id_id"
-    t.index ["following_id_id"], name: "index_followers_on_following_id_id"
+    t.index ["follower_id"], name: "index_followers_on_follower_id"
+    t.index ["following_id"], name: "index_followers_on_following_id"
   end
 
   create_table "ingredients", force: :cascade do |t|
@@ -154,8 +154,8 @@ ActiveRecord::Schema.define(version: 2021_03_25_074935) do
   add_foreign_key "cocktails_tags", "tags"
   add_foreign_key "favorites", "cocktails"
   add_foreign_key "favorites", "users"
-  add_foreign_key "followers", "follower_ids"
-  add_foreign_key "followers", "following_ids"
+  add_foreign_key "followers", "users", column: "follower_id"
+  add_foreign_key "followers", "users", column: "following_id"
   add_foreign_key "posts", "users"
   add_foreign_key "posts_cocktails", "cocktails"
   add_foreign_key "posts_cocktails", "posts"

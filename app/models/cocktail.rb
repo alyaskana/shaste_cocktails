@@ -10,18 +10,18 @@ class Cocktail < ApplicationRecord
   has_many :cocktails_ingredients, dependent: :destroy
   has_many :ingredients, :through => :cocktails_ingredients
 
-  has_many :cocktails_tags
+  has_many :cocktails_tags, dependent: :destroy
   has_many :tags, :through => :cocktails_tags
 
-  has_many :posts_cocktails
+  has_many :posts_cocktails, dependent: :destroy
   has_many :posts, :through => :posts_cocktails
 
-  has_many :favorites
+  has_many :favorites, dependent: :destroy
   has_many :favorited_users, :through => :favorites, :source => :cocktail
 
-  has_many :tasted_cocktails
+  has_many :tasted_cocktails, dependent: :destroy
   has_many :tasted_users, :through => :tasted_cocktails, :source => :cocktail
 
-  has_many :cocktails_likes
+  has_many :cocktails_likes, dependent: :destroy
   has_many :liked_users, :through => :cocktails_likes, :source => :cocktail
 end
