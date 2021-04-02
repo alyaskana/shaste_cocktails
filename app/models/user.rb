@@ -14,4 +14,6 @@ class User < ApplicationRecord
 
   has_many :cocktails, dependent: :destroy
   has_many :posts, dependent: :destroy
+  has_many :user_ingredients, dependent: :destroy
+  has_many :ingredients, :through => :user_ingredients
 end

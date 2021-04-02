@@ -2,13 +2,6 @@ Cocktail.destroy_all
 
 puts "Destroyed everything you touch"
 
-user = User.first_or_create!({
-  email: "ialina240200@gmail.com",
-  login: "alyaskana",
-  user_name: "Алина мутит шейки",
-  password: 'qwerty'
-})
-
 coffee_liquor = Ingredient.find_or_create_by!({name: 'кофейный ликер'})
 irish_cream = Ingredient.find_or_create_by!({name: 'айриш крим'})
 gin = Ingredient.find_or_create_by!({name: 'джин'})
@@ -32,6 +25,18 @@ to_sit_well = Tag.find_or_create_by!({name: 'хорошо посидеть', tag
 to_relax = Tag.find_or_create_by!({name: 'расслабиться', tag_type: 'goal'})
 to_party = Tag.find_or_create_by!({name: 'вечеринка с друзьями', tag_type: 'goal'})
 to_die = Tag.find_or_create_by!({name: 'набухаться в хлам', tag_type: 'goal'})
+
+user = User.first_or_create!({
+  email: "ialina240200@gmail.com",
+  login: "alyaskana",
+  user_name: "Алина мутит шейки",
+  password: 'qwerty',
+  ingredients: [tonik, salt, tripple_sek, irish_cream, coffee_liquor, ice]
+})
+
+def build_ci(ingredient, amount)
+  CocktailsIngredient.new(ingredient: ingredient, amount: amount)
+end
 
 cocktails = [
   {
@@ -211,4 +216,12 @@ cocktails = [
 cocktails.each do |cocktail|
   cocktailik = Cocktail.create!(cocktail)
   puts "Some magic just create a #{ cocktailik.title } with id #{ cocktailik.id }!"
+end
+
+CocktailsIngredient.all.each do |ci|
+  ci.update(amount: "#{rand(20..50)} мл")
+end
+
+CocktailsIngredient.where(ingredient: [ice, salt]).each do |ci|
+  ci.update(amount: "")
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_25_074935) do
+ActiveRecord::Schema.define(version: 2021_04_02_163139) do
 
   create_table "ckeditor_assets", force: :cascade do |t|
     t.string "data_file_name", null: false
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2021_03_25_074935) do
     t.integer "ingredient_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "amount"
     t.index ["cocktail_id"], name: "index_cocktails_ingredients_on_cocktail_id"
     t.index ["ingredient_id"], name: "index_cocktails_ingredients_on_ingredient_id"
   end
@@ -88,7 +89,7 @@ ActiveRecord::Schema.define(version: 2021_03_25_074935) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.bigint "parent_id"
+    t.integer "parent_id"
     t.string "image"
     t.text "content"
     t.datetime "created_at", precision: 6, null: false

@@ -6,7 +6,9 @@ class Users::SessionsController < Devise::SessionsController
   private
 
   def respond_with(resource, _opts = {})
-    render json: resource.to_json
+    # render json: resource.to_json(include: :ingredients)
+    @user = resource
+    # render 'create.json.jbuilder'
   end
 
   def respond_to_on_destroy
