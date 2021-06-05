@@ -11,16 +11,20 @@ class Api::CocktailsController < ApplicationController
 
   def create
     tags = Tag.where(id: cocktail_params[:tags])
+    cocktails_ingredients = cocktail_params[:ingredients].map { |i| CocktailsIngredient.new({ingredient_id: i[:id], amount: i[:amount]}) }
 
     @cocktail = current_user.cocktails.new({
       title: cocktail_params[:title],
+      description: cocktail_params[:description],
       directions: cocktail_params[:steps],
       youtube: cocktail_params[:youtube],
-      tags: tags
+      tags: tags,
+      cocktails_ingredients: cocktails_ingredients,
+      image: cocktail_params[:photo],
     })
 
     unless @cocktail.save
-      rendoe json: { errors: @cocktail.errors, status: :unprocessable_entity }
+      render json: { errors: @cocktail.errors, status: :unprocessable_entity }
     end
   end
 
@@ -28,7 +32,7 @@ class Api::CocktailsController < ApplicationController
   private 
 
   def cocktail_params
-    params.require(:cocktail).permit(:title, :youtube, :photo, tags: [], ingredients: [:name, :count], steps: [])
+    params.require(:cocktail).permit(:title, :description, :youtube, :photo, tags: [], ingredients: [:id, :amount], steps: [])
 
     # new_params = params.require(:cocktail).permit(:title, :image, :description, :youtube, directions: [], cocktails_ingredients: [:ingredient_id, :amount], tags: [])
 
