@@ -17,6 +17,11 @@ Rails.application.routes.draw do
     resources :cocktails
     resources :tags, only: :index
     resources :ingredients, only: :index
+    resources :profile, only: [] do 
+      collection do
+        get :my_bar
+      end
+    end
   end
   
   resources :ingredients
