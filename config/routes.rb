@@ -17,10 +17,10 @@ Rails.application.routes.draw do
     resources :cocktails
     resources :tags, only: :index
     resources :ingredients, only: :index
-    resources :profile, only: [] do 
-      collection do
-        get :my_bar
-      end
+
+    namespace :profile do
+      resources :ingredients, only: [:index, :create, :destroy]
+      resources :favorites, only: [:index, :create, :destroy]
     end
   end
   
