@@ -16,11 +16,11 @@ class Cocktail < ApplicationRecord
   has_many :posts, :through => :posts_cocktails
 
   has_many :favorites, dependent: :destroy
-  has_many :favorited_users, :through => :favorites, :source => :cocktail
+  has_many :favorited_users, :through => :favorites, :source => :user
 
   has_many :tasted_cocktails, dependent: :destroy
-  has_many :tasted_users, :through => :tasted_cocktails, :source => :cocktail
+  has_many :tasted_users, :through => :tasted_cocktails, :source => :user
 
   has_many :cocktails_likes, dependent: :destroy
-  has_many :liked_users, :through => :cocktails_likes, :source => :cocktail
+  has_many :liked_users, :through => :cocktails_likes, :source => :user
 end
