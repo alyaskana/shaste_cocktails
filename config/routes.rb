@@ -22,6 +22,13 @@ Rails.application.routes.draw do
       resources :ingredients, only: [:index, :create, :destroy]
       resources :favorites, only: [:index, :create, :destroy]
     end
+
+    resources :users, only: [] do
+      collection do
+        post :follow
+        post :unfollow
+      end
+    end
   end
   
   resources :ingredients
