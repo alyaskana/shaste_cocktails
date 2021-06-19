@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       collection do
         post :follow
         post :unfollow
+        get :profile
       end
     end
   end

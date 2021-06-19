@@ -29,5 +29,11 @@ class Api::UsersController < ApplicationController
       return render json: {error: "User with id=#{params[:id]} not found"}, status: 404
     end
     render :show, locals: {user: user}
+  end
+
+  def profile
+    user = User.find_by(id: current_user.id)
+    render :show, locals: {user: user}
+  end
 end
 
