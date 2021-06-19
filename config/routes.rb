@@ -23,7 +23,7 @@ Rails.application.routes.draw do
       resources :favorites, only: [:index, :create, :destroy]
     end
 
-    resources :users, only: [] do
+    resources :users, only: [:show] do
       collection do
         post :follow
         post :unfollow
