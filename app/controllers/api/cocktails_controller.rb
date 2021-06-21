@@ -29,6 +29,29 @@ class Api::CocktailsController < ApplicationController
   end
 
 
+  def like
+    cocktail = Cocktail.find_by(id: params[:id])
+    unless cocktail
+      return render json: {error: "Cocktail with id=#{params[:id]} not found"}, status: 404
+    end
+
+    current_user.likes << cocktail
+    current_user.save!
+    head :no_content
+  end
+
+  def unlike
+    cocktail = Cocktail.find_by(id: params[:id])
+    unless cocktail
+      return render json: {error: "Cocktail with id=#{params[:id]} not found"}, status: 404
+    end
+
+    current_user.likes.delete(cocktail)
+    current_user.save!
+    head :no_content
+  end
+
+
   private 
 
   def cocktail_params

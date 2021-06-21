@@ -28,4 +28,7 @@ class User < ApplicationRecord
 
   has_many :tasted_cocktails, dependent: :destroy
   has_many :tasted, :through => :tasted_cocktails, :source => :cocktail
+
+  has_many :cocktails_likes, dependent: :destroy
+  has_many :likes, :through => :cocktails_likes, :source => :cocktail
 end

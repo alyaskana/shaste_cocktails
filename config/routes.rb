@@ -14,7 +14,13 @@ Rails.application.routes.draw do
   }
 
   namespace :api, defaults: {format: 'json'} do
-    resources :cocktails
+    resources :cocktails, only: [:index, :show, :create] do
+      collection do
+        post :like
+        post :unlike
+      end
+    end
+
     resources :tags, only: :index
     resources :ingredients, only: :index
 
