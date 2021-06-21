@@ -55,6 +55,28 @@ class Api::CocktailsController < ApplicationController
     render :show, locals: {cocktail: cocktail}
   end
 
+  def favorite
+    cocktail = Cocktail.find_by(id: params[:id])
+    unless cocktail
+      return render json: {error: "Cocktail with id=#{params[:id]} not found"}, status: 404
+    end
+
+    current_user.favorites << cocktail
+    current_user.save!
+    render :show, locals: {cocktail: cocktail}
+  end
+
+  def unfavorite
+    cocktail = Cocktail.find_by(id: params[:id])
+    unless cocktail
+      return render json: {error: "Cocktail with id=#{params[:id]} not found"}, status: 404
+    end
+
+    current_user.favorites.delete(cocktail)
+    current_user.save!
+    render :show, locals: {cocktail: cocktail}
+  end
+
 
   private 
 

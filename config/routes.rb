@@ -18,6 +18,8 @@ Rails.application.routes.draw do
       collection do
         post :like
         post :unlike
+        post :favorite
+        post :unfavorite
       end
     end
 

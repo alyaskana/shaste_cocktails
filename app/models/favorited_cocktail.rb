@@ -1,4 +1,4 @@
-class Favorite < ApplicationRecord
+class FavoritedCocktail < ApplicationRecord
   belongs_to :user
   belongs_to :cocktail
 

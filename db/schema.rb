@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_18_105201) do
+ActiveRecord::Schema.define(version: 2021_06_21_213223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,13 +65,13 @@ ActiveRecord::Schema.define(version: 2021_06_18_105201) do
     t.index ["tag_id"], name: "index_cocktails_tags_on_tag_id"
   end
 
-  create_table "favorites", force: :cascade do |t|
+  create_table "favorited_cocktails", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "cocktail_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["cocktail_id"], name: "index_favorites_on_cocktail_id"
-    t.index ["user_id"], name: "index_favorites_on_user_id"
+    t.index ["cocktail_id"], name: "index_favorited_cocktails_on_cocktail_id"
+    t.index ["user_id"], name: "index_favorited_cocktails_on_user_id"
   end
 
   create_table "follows", force: :cascade do |t|
@@ -159,8 +159,8 @@ ActiveRecord::Schema.define(version: 2021_06_18_105201) do
   add_foreign_key "cocktails_likes", "users"
   add_foreign_key "cocktails_tags", "cocktails"
   add_foreign_key "cocktails_tags", "tags"
-  add_foreign_key "favorites", "cocktails"
-  add_foreign_key "favorites", "users"
+  add_foreign_key "favorited_cocktails", "cocktails"
+  add_foreign_key "favorited_cocktails", "users"
   add_foreign_key "follows", "users", column: "follower_id"
   add_foreign_key "follows", "users", column: "following_id"
   add_foreign_key "posts", "users"
