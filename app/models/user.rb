@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_many :cocktails, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :user_ingredients, dependent: :destroy
-  has_many :ingredients, :through => :user_ingredients
+  has_many :ingredients, -> { order 'user_ingredients.created_at' }, :through => :user_ingredients
 
   has_many :favorites, dependent: :destroy
   has_many :favorited_cocktails, :through => :favorites, :source => :cocktail
