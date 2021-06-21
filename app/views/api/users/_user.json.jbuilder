@@ -4,3 +4,4 @@ json.followers user.followers, :id
 json.followings user.followings, :id
 json.cocktails user.cocktails, :id
 json.tasted user.tasted, :id
+json.favorites user.favorites, :id
