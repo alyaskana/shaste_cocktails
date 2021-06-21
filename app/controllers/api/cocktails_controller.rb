@@ -2,18 +2,20 @@ class Api::CocktailsController < ApplicationController
   before_action :authenticate_user!, only: :create
 
   def index
-    @cocktails = Cocktail.all
+    cocktails = Cocktail.all
+    render :index, locals: {cocktails: cocktails}
   end
 
   def show
-    @cocktail = Cocktail.find(params[:id])
+    cocktail = Cocktail.find(params[:id])
+    render :show, locals: {cocktail: cocktail}
   end
 
   def create
     tags = Tag.where(id: cocktail_params[:tags])
     cocktails_ingredients = cocktail_params[:ingredients].map { |i| CocktailsIngredient.new({ingredient_id: i[:id], amount: i[:amount]}) }
 
-    @cocktail = current_user.cocktails.new({
+    cocktail = current_user.cocktails.new({
       title: cocktail_params[:title],
       description: cocktail_params[:description],
       directions: cocktail_params[:steps],
@@ -23,9 +25,11 @@ class Api::CocktailsController < ApplicationController
       image: cocktail_params[:photo],
     })
 
-    unless @cocktail.save
-      render json: { errors: @cocktail.errors, status: :unprocessable_entity }
+    unless cocktail.save
+      render json: { errors: cocktail.errors, status: :unprocessable_entity }
     end
+
+    render :create, locals: {cocktail: cocktail}
   end
 
 
@@ -37,7 +41,7 @@ class Api::CocktailsController < ApplicationController
 
     current_user.likes << cocktail
     current_user.save!
-    head :no_content
+    render :show, locals: {cocktail: cocktail}
   end
 
   def unlike
@@ -48,7 +52,7 @@ class Api::CocktailsController < ApplicationController
 
     current_user.likes.delete(cocktail)
     current_user.save!
-    head :no_content
+    render :show, locals: {cocktail: cocktail}
   end
 
 
