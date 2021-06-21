@@ -20,6 +20,8 @@ Rails.application.routes.draw do
         post :unlike
         post :favorite
         post :unfavorite
+        post :taste
+        post :untaste
       end
     end
 
