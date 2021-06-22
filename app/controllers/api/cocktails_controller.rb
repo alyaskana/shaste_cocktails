@@ -14,8 +14,8 @@ class Api::CocktailsController < ApplicationController
       .where("cocktails_ingredients.ingredient_id" => ingredients_ids)
       .where.not('cocktails_ingredients.cocktail_id' => cocktail.id).group(:id)
       .count.sort_by {|key, value| -value}.first(4).to_h.keys
-    
-    similar_cocktails = Cocktail.includes(:ingredients).where(id: similar_cocktails_ids)
+
+    similar_cocktails = Cocktail.includes(:ingredients).find(similar_cocktails_ids)
     render :show, locals: {cocktail: cocktail, similar_cocktails: similar_cocktails}
   end
 
