@@ -1,5 +1,5 @@
 class Api::CocktailsController < ApplicationController
-  before_action :authenticate_user!, only: :create
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     cocktails = Cocktail.all
