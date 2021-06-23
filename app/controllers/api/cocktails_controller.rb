@@ -49,7 +49,7 @@ class Api::CocktailsController < ApplicationController
 
     current_user.likes << cocktail
     current_user.save!
-    render :show, locals: {cocktail: cocktail}
+    render :show, locals: {cocktail: cocktail, similar_cocktails: []}
   end
 
   def unlike
@@ -60,7 +60,7 @@ class Api::CocktailsController < ApplicationController
 
     current_user.likes.delete(cocktail)
     current_user.save!
-    render :show, locals: {cocktail: cocktail}
+    render :show, locals: {cocktail: cocktail, similar_cocktails: []}
   end
 
   def favorite
@@ -71,7 +71,7 @@ class Api::CocktailsController < ApplicationController
 
     current_user.favorites << cocktail
     current_user.save!
-    render :show, locals: {cocktail: cocktail}
+    render :show, locals: {cocktail: cocktail, similar_cocktails: []}
   end
 
   def unfavorite
@@ -82,7 +82,7 @@ class Api::CocktailsController < ApplicationController
 
     current_user.favorites.delete(cocktail)
     current_user.save!
-    render :show, locals: {cocktail: cocktail}
+    render :show, locals: {cocktail: cocktail, similar_cocktails: []}
   end
 
   def taste
@@ -93,7 +93,7 @@ class Api::CocktailsController < ApplicationController
 
     current_user.tasted << cocktail
     current_user.save!
-    render :show, locals: {cocktail: cocktail}
+    render :show, locals: {cocktail: cocktail, similar_cocktails: []}
   end
 
   def untaste
@@ -104,7 +104,7 @@ class Api::CocktailsController < ApplicationController
 
     current_user.tasted.delete(cocktail)
     current_user.save!
-    render :show, locals: {cocktail: cocktail}
+    render :show, locals: {cocktail: cocktail, similar_cocktails: []}
   end
 
 
