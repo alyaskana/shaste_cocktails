@@ -8,15 +8,7 @@ class Api::CocktailsController < ApplicationController
 
   def show
     cocktail = Cocktail.includes(:ingredients).find(params[:id])
-    ingredients_ids = cocktail.ingredients.pluck(:id)
-    similar_cocktails_ids = Cocktail
-      .joins(:cocktails_ingredients)
-      .where("cocktails_ingredients.ingredient_id" => ingredients_ids)
-      .where.not('cocktails_ingredients.cocktail_id' => cocktail.id).group(:id)
-      .count.sort_by {|key, value| -value}.first(4).to_h.keys
-
-    similar_cocktails = Cocktail.includes(:ingredients).find(similar_cocktails_ids)
-    render :show, locals: {cocktail: cocktail, similar_cocktails: similar_cocktails}
+    render :show, locals: {cocktail: cocktail, similar_cocktails: similar_cocktails(cocktail)}
   end
 
   def create
@@ -34,7 +26,7 @@ class Api::CocktailsController < ApplicationController
     })
 
     unless cocktail.save
-      render json: { errors: cocktail.errors, status: :unprocessable_entity }
+      return render json: { errors: cocktail.errors, status: :unprocessable_entity }
     end
 
     render :create, locals: {cocktail: cocktail}
@@ -49,7 +41,7 @@ class Api::CocktailsController < ApplicationController
 
     current_user.likes << cocktail
     current_user.save!
-    render :show, locals: {cocktail: cocktail, similar_cocktails: []}
+    render :show, locals: {cocktail: cocktail, similar_cocktails: similar_cocktails(cocktail)}
   end
 
   def unlike
@@ -60,7 +52,7 @@ class Api::CocktailsController < ApplicationController
 
     current_user.likes.delete(cocktail)
     current_user.save!
-    render :show, locals: {cocktail: cocktail, similar_cocktails: []}
+    render :show, locals: {cocktail: cocktail, similar_cocktails: similar_cocktails(cocktail)}
   end
 
   def favorite
@@ -71,7 +63,7 @@ class Api::CocktailsController < ApplicationController
 
     current_user.favorites << cocktail
     current_user.save!
-    render :show, locals: {cocktail: cocktail, similar_cocktails: []}
+    render :show, locals: {cocktail: cocktail, similar_cocktails: similar_cocktails(cocktail)}
   end
 
   def unfavorite
@@ -82,7 +74,7 @@ class Api::CocktailsController < ApplicationController
 
     current_user.favorites.delete(cocktail)
     current_user.save!
-    render :show, locals: {cocktail: cocktail, similar_cocktails: []}
+    render :show, locals: {cocktail: cocktail, similar_cocktails: similar_cocktails(cocktail)}
   end
 
   def taste
@@ -93,7 +85,7 @@ class Api::CocktailsController < ApplicationController
 
     current_user.tasted << cocktail
     current_user.save!
-    render :show, locals: {cocktail: cocktail, similar_cocktails: []}
+    render :show, locals: {cocktail: cocktail, similar_cocktails: similar_cocktails(cocktail)}
   end
 
   def untaste
@@ -104,7 +96,7 @@ class Api::CocktailsController < ApplicationController
 
     current_user.tasted.delete(cocktail)
     current_user.save!
-    render :show, locals: {cocktail: cocktail, similar_cocktails: []}
+    render :show, locals: {cocktail: cocktail, similar_cocktails: similar_cocktails(cocktail)}
   end
 
 
@@ -122,5 +114,16 @@ class Api::CocktailsController < ApplicationController
     # new_params[:tags] = tags
     
     # new_params
+  end
+
+  def similar_cocktails(cocktail)
+    ingredients_ids = cocktail.ingredients.pluck(:id)
+    similar_cocktails_ids = Cocktail
+      .joins(:cocktails_ingredients)
+      .where("cocktails_ingredients.ingredient_id" => ingredients_ids)
+      .where.not('cocktails_ingredients.cocktail_id' => cocktail.id).group(:id)
+      .count.sort_by {|key, value| -value}.first(4).to_h.keys
+
+    Cocktail.includes(:ingredients).find(similar_cocktails_ids)
   end
 end

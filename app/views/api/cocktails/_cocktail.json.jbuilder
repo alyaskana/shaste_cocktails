@@ -18,3 +18,7 @@ if defined?(similar_cocktails)
     json.array! similar_cocktails, partial: "api/cocktails/cocktail", as: :cocktail
   end
 end
+
+json.posts do 
+  json.array! cocktail.posts, partial: "api/posts/post", as: :post
+end

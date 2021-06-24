@@ -23,4 +23,6 @@ class Cocktail < ApplicationRecord
 
   has_many :cocktails_likes, dependent: :destroy
   has_many :liked_users, :through => :cocktails_likes, :source => :user
+  
+  has_many :posts
 end
