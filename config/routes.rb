@@ -45,7 +45,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :posts, only: [:create]
+    resources :posts, only: [:index, :create]
   end
   
   resources :ingredients
