@@ -6,3 +6,7 @@ json.cocktails user.cocktails, :id
 json.tasted user.tasted, :id
 json.favorites user.favorites, :id
 json.likes user.likes, :id
+
+json.posts do 
+  json.array! user.posts, partial: "api/posts/post", as: :post
+end
