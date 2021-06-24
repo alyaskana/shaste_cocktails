@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_21_213223) do
+ActiveRecord::Schema.define(version: 2021_06_24_175054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,6 +98,8 @@ ActiveRecord::Schema.define(version: 2021_06_21_213223) do
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "cocktail_id", null: false
+    t.index ["cocktail_id"], name: "index_posts_on_cocktail_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -163,6 +165,7 @@ ActiveRecord::Schema.define(version: 2021_06_21_213223) do
   add_foreign_key "favorited_cocktails", "users"
   add_foreign_key "follows", "users", column: "follower_id"
   add_foreign_key "follows", "users", column: "following_id"
+  add_foreign_key "posts", "cocktails"
   add_foreign_key "posts", "users"
   add_foreign_key "posts_cocktails", "cocktails"
   add_foreign_key "posts_cocktails", "posts"

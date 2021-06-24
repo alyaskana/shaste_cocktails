@@ -44,6 +44,8 @@ Rails.application.routes.draw do
         get :profile
       end
     end
+
+    resources :posts, only: [:create]
   end
   
   resources :ingredients
