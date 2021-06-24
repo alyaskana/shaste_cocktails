@@ -18,7 +18,7 @@ class Api::Profile::IngredientsController < ApplicationController
     render :index, locals: {ingredients: ingredients}
   end
 
-  def destroy
+  def delete
     ingredient = Ingredient.find_by(id: params[:id])
 
     unless ingredient

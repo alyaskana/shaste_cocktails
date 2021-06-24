@@ -29,7 +29,11 @@ Rails.application.routes.draw do
     resources :ingredients, only: :index
 
     namespace :profile do
-      resources :ingredients, only: [:index, :create, :destroy]
+      resources :ingredients, only: [:index, :create] do
+        collection do
+          post :delete 
+        end 
+      end
       resources :favorites, only: [:index, :create, :destroy]
     end
 

@@ -24,6 +24,8 @@ gem 'ckeditor'
 gem 'react-rails', '~> 2.6'
 gem 'rack-cors'
 gem 'enumerize'
+gem 'rack-cors'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
