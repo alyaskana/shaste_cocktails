@@ -10,7 +10,7 @@ class Api::PostsController < ApplicationController
     post = current_user.posts.new(post_params)
 
     unless post.save
-      return render json: { errors: post.errors, status: :unprocessable_entity }
+      return render json: { errors: post.errors }, status: :unprocessable_entity
     end
 
     render :create, locals: {post: post}
