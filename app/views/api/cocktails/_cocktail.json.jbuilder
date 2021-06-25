@@ -20,5 +20,5 @@ if defined?(similar_cocktails)
 end
 
 json.posts do 
-  json.array! cocktail.posts, partial: "api/posts/post", as: :post
+  json.array! cocktail.posts.order(created_at: :desc), partial: "api/posts/post", as: :post
 end
