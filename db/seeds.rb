@@ -46,7 +46,7 @@ alina = User.first_or_create!({
   description: 'Развлекательное шоу Ирины Чесноковой на YouTube. В гостях звезды российского шоу-бизнеса с ЧЮ, актуальные темы и живая музыка.',
   link: 'vk.com/alyaskana',
   password: 'qwerty',
-  avatar: File.open(File.join(Rails.root, "/app/assets/images/avatars/avatar_1.jpg")),
+  avatar: File.open(File.join(Rails.root, "/app/assets/images/avatars/avatar_1.jpeg")),
   ingredients: [tonik, salt, tripple_sek, irish_cream, coffee_liquor, ice]
 })
 
@@ -57,7 +57,7 @@ amgalan = User.first_or_create!({
   description: 'Развлекательное шоу Ирины Чесноковой на YouTube. В гостях звезды российского шоу-бизнеса с ЧЮ, актуальные темы и живая музыка.',
   link: 'vk.com/alan_amg',
   password: 'qwerty',
-  avatar: File.open(File.join(Rails.root, "/app/assets/images/avatars/avatar_2.jpg")),
+  avatar: File.open(File.join(Rails.root, "/app/assets/images/avatars/avatar_2.jpeg")),
   ingredients: [tonik, salt, tripple_sek, irish_cream, coffee_liquor, ice]
 })
 
@@ -68,23 +68,23 @@ krawleek = User.first_or_create!({
   description: 'Развлекательное шоу Ирины Чесноковой на YouTube. В гостях звезды российского шоу-бизнеса с ЧЮ, актуальные темы и живая музыка.',
   link: 'vk.com/krawleek',
   password: 'qwerty',
-  avatar: File.open(File.join(Rails.root, "/app/assets/images/avatars/avatar_3.jpg")),
+  avatar: File.open(File.join(Rails.root, "/app/assets/images/avatars/avatar_3.jpeg")),
   ingredients: [tonik, salt, tripple_sek, irish_cream, coffee_liquor, ice]
 })
 
-def build_ci(ingredient, amount)
-  CocktailsIngredient.new(ingredient: ingredient, amount: amount)
-end
+# def build_ci(ingredient, amount)
+#   CocktailsIngredient.new((ingredient: ingredient, amount: amount))
+# end
 
 cocktails = [
   {
     user_id: alina.id,
     title: "Джин персиковый чай",
-    cocktail_ingredients: [
-      {ingredient: gin, amount: '40 мл'}, 
-      {ingredient: lemon_juice, amount: '30 мл'},
-      {ingredient: sugar_syrup, amount: '20 мл'},
-      {ingredient: ice, amount: ''},
+    cocktails_ingredients: [
+      CocktailsIngredient.new({ingredient: gin, amount: '40 мл'}), 
+      CocktailsIngredient.new({ingredient: lemon_juice, amount: '30 мл'}),
+      CocktailsIngredient.new({ingredient: sugar_syrup, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: ice, amount: ''}),
     ],
     tags: [sweet, to_relax, to_sit_well],
     image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_1.png")),
@@ -100,12 +100,12 @@ cocktails = [
   {
     user_id: alina.id,
     title: "Lemon Drop",
-    cocktail_ingredients: [
-      {ingredient: vodka, amount: '60 мл'}, 
-      {ingredient: tripple_sek, amount: '15 мл'},
-      {ingredient: lemon_juice, amount: '30 мл'},
-      {ingredient: sugar_syrup, amount: '30 мл'},
-      {ingredient: ice, amount: ''},
+    cocktails_ingredients: [
+      CocktailsIngredient.new({ingredient: vodka, amount: '60 мл'}), 
+      CocktailsIngredient.new({ingredient: tripple_sek, amount: '15 мл'}),
+      CocktailsIngredient.new({ingredient: lemon_juice, amount: '30 мл'}),
+      CocktailsIngredient.new({ingredient: sugar_syrup, amount: '30 мл'}),
+      CocktailsIngredient.new({ingredient: ice, amount: ''}),
     ],
     tags: [bitter, sour, to_die],
     image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_2.png")),
@@ -120,11 +120,11 @@ cocktails = [
   {
     user_id: alina.id,
     title: "Pink Cosmo",
-    cocktail_ingredients: [
-      {ingredient: vodka, amount: '60 мл'}, 
-      {ingredient: tripple_sek, amount: '25 мл'},
-      {ingredient: lemon_juice, amount: '20 мл'},
-      {ingredient: cranberry_jelly, amount: '30 мл'},
+    cocktails_ingredients: [
+      CocktailsIngredient.new({ingredient: vodka, amount: '60 мл'}), 
+      CocktailsIngredient.new({ingredient: tripple_sek, amount: '25 мл'}),
+      CocktailsIngredient.new({ingredient: lemon_juice, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: cranberry_jelly, amount: '30 мл'}),
     ],
     tags: [bitter, sweet_sour, to_sit_well],
     image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_3.png")),
@@ -138,10 +138,10 @@ cocktails = [
   {
     user_id: alina.id,
     title: "Японские тапки",
-    cocktail_ingredients: [
-      {ingredient: tripple_sek, amount: '25 мл'},
-      {ingredient: lemon_juice, amount: '20 мл'},
-      {ingredient: melon_liquor, amount: '30 мл'},
+    cocktails_ingredients: [
+      CocktailsIngredient.new({ingredient: tripple_sek, amount: '25 мл'}),
+      CocktailsIngredient.new({ingredient: lemon_juice, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: melon_liquor, amount: '30 мл'}),
     ],
     tags: [bitter, sweet_sour, to_sit_well],
     image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_3.png")),
@@ -159,11 +159,11 @@ cocktails = [
   {
     user_id: amgalan.id,
     title: "Бижу",
-    cocktail_ingredients: [
-      {ingredient: gin, amount: '40 мл'}, 
-      {ingredient: red_sweet_vermut, amount: '30 мл'},
-      {ingredient: orange_bitter, amount: '20 мл'},
-      {ingredient: shartrez, amount: '1-2 капли'},
+    cocktails_ingredients: [
+      CocktailsIngredient.new({ingredient: gin, amount: '40 мл'}), 
+      CocktailsIngredient.new({ingredient: red_sweet_vermut, amount: '30 мл'}),
+      CocktailsIngredient.new({ingredient: orange_bitter, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: shartrez, amount: '1-2 капли'}),
     ],
     tags: [sweet, to_relax, to_sit_well],
     image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_5.png")),
@@ -179,10 +179,10 @@ cocktails = [
   {
     user_id: amgalan.id,
     title: "Аляска",
-    cocktail_ingredients: [
-      {ingredient: gin, amount: '40 мл'}, 
-      {ingredient: orange_bitter, amount: '20 мл'},
-      {ingredient: shartrez, amount: '100 мл'},
+    cocktails_ingredients: [
+      CocktailsIngredient.new({ingredient: gin, amount: '40 мл'}), 
+      CocktailsIngredient.new({ingredient: orange_bitter, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: shartrez, amount: '100 мл'}),
     ],
     tags: [bitter, sour, to_die],
     image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_6.png")),
@@ -197,11 +197,11 @@ cocktails = [
   {
     user_id: amgalan.id,
     title: "Личи Мартини",
-    cocktail_ingredients: [
-      {ingredient: vodka, amount: '60 мл'}, 
-      {ingredient: pure_lichi, amount: '25 мл'},
-      {ingredient: lemon_juice, amount: '20 мл'},
-      {ingredient: sugar_syrup, amount: '30 мл'},
+    cocktails_ingredients: [
+      CocktailsIngredient.new({ingredient: vodka, amount: '60 мл'}), 
+      CocktailsIngredient.new({ingredient: pure_lichi, amount: '25 мл'}),
+      CocktailsIngredient.new({ingredient: lemon_juice, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: sugar_syrup, amount: '30 мл'}),
     ],
     tags: [bitter, sweet_sour, to_sit_well],
     image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_7.png")),
@@ -215,10 +215,10 @@ cocktails = [
   {
     user_id: amgalan.id,
     title: "Абсент Бренди Флип",
-    cocktail_ingredients: [
-      {ingredient: brendy, amount: '60 мл'},
-      {ingredient: absent, amount: '20 мл'},
-      {ingredient: muscat_nut, amount: 'для украшения'},
+    cocktails_ingredients: [
+      CocktailsIngredient.new({ingredient: brendy, amount: '60 мл'}),
+      CocktailsIngredient.new({ingredient: absent, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: muscat_nut, amount: 'для украшения'}),
     ],
     tags: [bitter, sweet_sour, to_sit_well],
     image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_8.png")),
@@ -236,13 +236,13 @@ cocktails = [
   {
     user_id: krawleek.id,
     title: "Эгг-ног",
-    cocktail_ingredients: [
-      {ingredient: gin, amount: '40 мл'}, 
-      {ingredient: egg, amount: '1 шт'},
-      {ingredient: brendy, amount: '20 мл'},
-      {ingredient: rum, amount: '10 мл'},
-      {ingredient: milk, amount: '100 мл'},
-      {ingredient: muscat_nut, amount: 'для украшения'},
+    cocktails_ingredients: [
+      CocktailsIngredient.new({ingredient: gin, amount: '40 мл'}), 
+      CocktailsIngredient.new({ingredient: egg, amount: '1 шт'}),
+      CocktailsIngredient.new({ingredient: brendy, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: rum, amount: '10 мл'}),
+      CocktailsIngredient.new({ingredient: milk, amount: '100 мл'}),
+      CocktailsIngredient.new({ingredient: muscat_nut, amount: 'для украшения'}),
     ],
     tags: [sweet, to_relax, to_sit_well],
     image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_9.png")),
@@ -258,13 +258,13 @@ cocktails = [
   {
     user_id: krawleek.id,
     title: "Глинтвейн",
-    cocktail_ingredients: [
-      {ingredient: gin, amount: '40 мл'}, 
-      {ingredient: tripple_sek, amount: '40 мл'}, 
-      {ingredient: cranberry_jelly, amount: '40 мл'}, 
-      {ingredient: orange_bitter, amount: '20 мл'},
-      {ingredient: shartrez, amount: '100 мл'},
-      {ingredient: lime, amount: ''},
+    cocktails_ingredients: [
+      CocktailsIngredient.new({ingredient: gin, amount: '40 мл'}), 
+      CocktailsIngredient.new({ingredient: tripple_sek, amount: '40 мл'}), 
+      CocktailsIngredient.new({ingredient: cranberry_jelly, amount: '40 мл'}), 
+      CocktailsIngredient.new({ingredient: orange_bitter, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: shartrez, amount: '100 мл'}),
+      CocktailsIngredient.new({ingredient: lime, amount: ''}),
     ],
     tags: [bitter, sour, to_die],
     image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_10.png")),
@@ -279,11 +279,11 @@ cocktails = [
   {
     user_id: krawleek.id,
     title: "Молочный пунш «Леон»",
-    cocktail_ingredients: [
-      {ingredient: rum, amount: '60 мл'}, 
-      {ingredient: cookies, amount: '1 шт'},
-      {ingredient: lemon_juice, amount: '20 мл'},
-      {ingredient: milk, amount: '30 мл'},
+    cocktails_ingredients: [
+      CocktailsIngredient.new({ingredient: rum, amount: '60 мл'}), 
+      CocktailsIngredient.new({ingredient: cookies, amount: '1 шт'}),
+      CocktailsIngredient.new({ingredient: lemon_juice, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: milk, amount: '30 мл'}),
     ],
     tags: [bitter, sweet_sour, to_sit_well],
     image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_11.png")),
@@ -297,11 +297,11 @@ cocktails = [
   {
     user_id: krawleek.id,
     title: "Tom & Jerry",
-    cocktail_ingredients: [
-      {ingredient: egg, amount: '60 мл'},
-      {ingredient: rum, amount: '20 мл'},
-      {ingredient: sugar_syrup, amount: '20 мл'},
-      {ingredient: muscat_nut, amount: 'для украшения'},
+    cocktails_ingredients: [
+      CocktailsIngredient.new({ingredient: egg, amount: '60 мл'}),
+      CocktailsIngredient.new({ingredient: rum, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: sugar_syrup, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: muscat_nut, amount: 'для украшения'}),
     ],
     tags: [bitter, sweet_sour, to_sit_well],
     image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_12.png")),
@@ -319,13 +319,13 @@ cocktails = [
   {
     user_id: alina.id,
     title: "Кэнди шот",
-    cocktail_ingredients: [
-      {ingredient: egg, amount: '60 мл'},
-      {ingredient: irish_cream, amount: '20 мл'},
-      {ingredient: tonik, amount: '20 мл'},
-      {ingredient: tobasco, amount: '20 мл'},
-      {ingredient: coffee_liquor, amount: '20 мл'},
-      {ingredient: lime, amount: 'для украшения'},
+    cocktails_ingredients: [
+      CocktailsIngredient.new({ingredient: egg, amount: '60 мл'}),
+      CocktailsIngredient.new({ingredient: irish_cream, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: tonik, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: tobasco, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: coffee_liquor, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: lime, amount: 'для украшения'}),
     ],
     tags: [sweet, sweet_sour, to_party],
     image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_13.png")),
@@ -338,13 +338,13 @@ cocktails = [
   {
     user_id: alina.id,
     title: "Лонг айленд айс ти",
-    cocktail_ingredients: [
-      {ingredient: vodka, amount: '60 мл'},
-      {ingredient: tonik, amount: '20 мл'},
-      {ingredient: tripple_sek, amount: '20 мл'},
-      {ingredient: coffee_liquor, amount: '20 мл'},
-      {ingredient: salt, amount: ''},
-      {ingredient: ice, amount: ''},
+    cocktails_ingredients: [
+      CocktailsIngredient.new({ingredient: vodka, amount: '60 мл'}),
+      CocktailsIngredient.new({ingredient: tonik, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: tripple_sek, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: coffee_liquor, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: salt, amount: ''}),
+      CocktailsIngredient.new({ingredient: ice, amount: ''}),
     ],
     tags: [sweet, sweet_sour, to_sit_well, to_relax, salty],
     image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_14.png")),
@@ -357,14 +357,14 @@ cocktails = [
   {
     user_id: alina.id,
     title: "Кровавая Мэри",
-    cocktail_ingredients: [
-      {ingredient: vodka, amount: '60 мл'},
-      {ingredient: tomato_juice, amount: '20 мл'},
-      {ingredient: lemon_juice, amount: '20 мл'},
-      {ingredient: tonik, amount: '20 мл'},
-      {ingredient: gin, amount: '20 мл'},
-      {ingredient: salt, amount: ''},
-      {ingredient: ice, amount: ''},
+    cocktails_ingredients: [
+      CocktailsIngredient.new({ingredient: vodka, amount: '60 мл'}),
+      CocktailsIngredient.new({ingredient: tomato_juice, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: lemon_juice, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: tonik, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: gin, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: salt, amount: ''}),
+      CocktailsIngredient.new({ingredient: ice, amount: ''}),
     ],
     tags: [bitter, sour, to_relax, to_party],
     image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_15.png")),
@@ -379,10 +379,10 @@ cocktails = [
   {
     user_id: alina.id,
     title: "Б-52",
-    cocktail_ingredients: [
-      {ingredient: coffee_liquor, amount: '60 мл'},
-      {ingredient: irish_cream, amount: '20 мл'},
-      {ingredient: tripple_sek, amount: '20 мл'},
+    cocktails_ingredients: [
+      CocktailsIngredient.new({ingredient: coffee_liquor, amount: '60 мл'}),
+      CocktailsIngredient.new({ingredient: irish_cream, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: tripple_sek, amount: '20 мл'}),
     ],
     tags: [sweet, to_die],
     image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_16.png")),
@@ -394,14 +394,14 @@ cocktails = [
   {
     user_id: alina.id,
     title: "Маргарита",
-    cocktail_ingredients: [
-      {ingredient: tripple_sek, amount: '60 мл'},
-      {ingredient: sugar_syrup, amount: '20 мл'},
-      {ingredient: lime, amount: '20 мл'},
-      {ingredient: ice, amount: ''},
+    cocktails_ingredients: [
+      CocktailsIngredient.new({ingredient: tripple_sek, amount: '60 мл'}),
+      CocktailsIngredient.new({ingredient: sugar_syrup, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: lime, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: ice, amount: ''}),
     ],
     tags: [salty, to_sit_well, bitter],
-    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_1.jpg")),
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_1.png")),
     description: 'Это солоноватый кислый коктейль на текиле с лаймовым соком. Бармены во всем мире очень любят создавать твисты на этот классический коктейль, но окаёмка из соли практически всегда остаётся неизменным украшением "Маргариты".',
     directions: ["Сделай на бокале для маргариты соленую окаемку",
     "Налей в шейкер лаймовый сок 30 мл, сахарный сироп 10 мл, ликер трипл сек 25 мл и серебряную текилу 50 мл",
@@ -412,11 +412,11 @@ cocktails = [
   {
     user_id: alina.id,
     title: "Джин тоник",
-    cocktail_ingredients: [
-      {ingredient: tonik, amount: '60 мл'},
-      {ingredient: gin, amount: '20 мл'},
-      {ingredient: lime, amount: '20 мл'},
-      {ingredient: ice, amount: ''},
+    cocktails_ingredients: [
+      CocktailsIngredient.new({ingredient: tonik, amount: '60 мл'}),
+      CocktailsIngredient.new({ingredient: gin, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: lime, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: ice, amount: ''}),
     ],
     tags: [sweet_sour, to_party],
     image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_2.png")),
@@ -429,12 +429,12 @@ cocktails = [
   {
     user_id: alina.id,
     title: "Негрони",
-    cocktail_ingredients: [
-      {ingredient: vodka, amount: '60 мл'},
-      {ingredient: gin, amount: '20 мл'},
-      {ingredient: tonik, amount: '20 мл'},
-      {ingredient: sugar_syrup, amount: '20 мл'},
-      {ingredient: salt, amount: ''},
+    cocktails_ingredients: [
+      CocktailsIngredient.new({ingredient: vodka, amount: '60 мл'}),
+      CocktailsIngredient.new({ingredient: gin, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: tonik, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: sugar_syrup, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: salt, amount: ''}),
     ],
     tags: [sweet, to_sit_well, to_party, to_relax, salty],
     image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_3.png")),
@@ -447,12 +447,12 @@ cocktails = [
   {
     user_id: alina.id,
     title: "Вера и доверие",
-    cocktail_ingredients: [
-      {ingredient: vodka, amount: '60 мл'},
-      {ingredient: gin, amount: '20 мл'},
-      {ingredient: lemon_juice, amount: '20 мл'},
-      {ingredient: coffee_liquor, amount: '20 мл'},
-      {ingredient: salt, amount: ''},
+    cocktails_ingredients: [
+      CocktailsIngredient.new({ingredient: vodka, amount: '60 мл'}),
+      CocktailsIngredient.new({ingredient: gin, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: lemon_juice, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: coffee_liquor, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: salt, amount: ''}),
     ],
     tags: [bitter, sweet, to_relax],
     image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_4.png")),
@@ -467,11 +467,11 @@ cocktails = [
   {
     user_id: alina.id,
     title: "Испанский эг-ног",
-    cocktail_ingredients: [
-      {ingredient: coffee_liquor, amount: '60 мл'},
-      {ingredient: irish_cream, amount: '20 мл'},
-      {ingredient: lemon_juice, amount: '20 мл'},
-      {ingredient: sugar_syrup, amount: '20 мл'},
+    cocktails_ingredients: [
+      CocktailsIngredient.new({ingredient: coffee_liquor, amount: '60 мл'}),
+      CocktailsIngredient.new({ingredient: irish_cream, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: lemon_juice, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: sugar_syrup, amount: '20 мл'}),
     ],
     tags: [sweet, to_die, bitter],
     image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_5.png")),
@@ -483,12 +483,12 @@ cocktails = [
   {
     user_id: alina.id,
     title: "Текила санрайз",
-    cocktail_ingredients: [
-      {ingredient: lemon_juice, amount: '60 мл'},
-      {ingredient: gin, amount: '20 мл'},
-      {ingredient: tripple_sek, amount: '20 мл'},
-      {ingredient: sugar_syrup, amount: '20 мл'},
-      {ingredient: lime, amount: ''},
+    cocktails_ingredients: [
+      CocktailsIngredient.new({ingredient: lemon_juice, amount: '60 мл'}),
+      CocktailsIngredient.new({ingredient: gin, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: tripple_sek, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: sugar_syrup, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: lime, amount: ''}),
     ],
     tags: [sweet_sour, sweet, to_sit_well, bitter],
     image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_6.png")),
@@ -502,12 +502,12 @@ cocktails = [
   {
     user_id: alina.id,
     title: "Голубая лагуна",
-    cocktail_ingredients: [
-      {ingredient: tripple_sek, amount: '60 мл'},
-      {ingredient: gin, amount: '20 мл'},
-      {ingredient: lemon_juice, amount: '20 мл'},
-      {ingredient: sugar_syrup, amount: '20 мл'},
-      {ingredient: lime, amount: ''},
+    cocktails_ingredients: [
+      CocktailsIngredient.new({ingredient: tripple_sek, amount: '60 мл'}),
+      CocktailsIngredient.new({ingredient: gin, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: lemon_juice, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: sugar_syrup, amount: '20 мл'}),
+      CocktailsIngredient.new({ingredient: lime, amount: ''}),
     ],
     tags: [sweet_sour, to_party],
     image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_7.png")),
