@@ -40,7 +40,7 @@ to_relax = Tag.find_or_create_by!({name: 'расслабиться', tag_type: '
 to_party = Tag.find_or_create_by!({name: 'вечеринка с друзьями', tag_type: 'goal'})
 to_die = Tag.find_or_create_by!({name: 'набухаться в хлам', tag_type: 'goal'})
 
-alina = User.first_or_create!({
+alina = User.create!({
   email: "ialina240200@gmail.com",
   login: "alyaskana",
   user_name: "Алина",
@@ -51,7 +51,7 @@ alina = User.first_or_create!({
   ingredients: [tonik, salt, tripple_sek, irish_cream, coffee_liquor, ice]
 })
 
-amgalan = User.first_or_create!({
+amgalan = User.create!({
   email: "amgalan@gmail.com",
   login: "amgalan",
   user_name: "Амгалан",
@@ -62,7 +62,7 @@ amgalan = User.first_or_create!({
   ingredients: [tonik, salt, tripple_sek, irish_cream, coffee_liquor, ice]
 })
 
-krawleek = User.first_or_create!({
+krawleek = User.create!({
   email: "krawleek@gmail.com",
   login: "krawleek",
   user_name: "Елена",
