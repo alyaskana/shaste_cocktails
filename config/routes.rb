@@ -49,22 +49,22 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :create]
   end
   
-  resources :ingredients
-  resources :posts
-  resources :cocktails
-  resources :users do 
-    member do
-      get :posts
-    end
-  end
-  resources :favorites
+  # resources :ingredients
+  # resources :posts
+  # resources :cocktails
+  # resources :users do 
+  #   member do
+  #     get :posts
+  #   end
+  # end
+  # resources :favorites
 
-  resources :cocktails do
-    resources :favorites
-  end
-  get 'cocktails/index'
+  # resources :cocktails do
+  #   resources :favorites
+  # end
+  # get 'cocktails/index'
 
-  root 'cocktails#index'
+  # root 'cocktails#index'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
