@@ -31,7 +31,7 @@ class Api::CocktailsController < ApplicationController
     })
 
     unless cocktail.save
-      return render json: { errors: cocktail.errors, status: :unprocessable_entity }
+      return render json: { errors: cocktail.errors }, status: :unprocessable_entity
     end
 
     render :create, locals: {cocktail: cocktail}
