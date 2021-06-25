@@ -5,6 +5,7 @@ puts "Destroyed everything you touch"
 coffee_liquor = Ingredient.find_or_create_by!({name: 'кофейный ликер'})
 irish_cream = Ingredient.find_or_create_by!({name: 'айриш крим'})
 gin = Ingredient.find_or_create_by!({name: 'джин'})
+rum = Ingredient.find_or_create_by!({name: 'ром'})
 tripple_sek = Ingredient.find_or_create_by!({name: 'трипл сек'})
 ice = Ingredient.find_or_create_by!({name: 'лед'})
 tonik = Ingredient.find_or_create_by!({name: 'тоник'})
@@ -15,6 +16,18 @@ tomato_juice = Ingredient.find_or_create_by!({name: 'томатный сок'})
 tobasco = Ingredient.find_or_create_by!({name: 'тобаско соус'})
 salt = Ingredient.find_or_create_by!({name: 'соль'})
 lemon_juice = Ingredient.find_or_create_by!({name: 'лимонный сок'})
+cranberry_jelly = Ingredient.find_or_create_by!({name: 'клюквенный кисель'})
+melon_liquor = Ingredient.find_or_create_by!({name: 'дынный ликер'})
+red_sweet_vermut = Ingredient.find_or_create_by!({name: 'красный сладкий вермут'})
+orange_bitter = Ingredient.find_or_create_by!({name: 'апельсиновый биттер'})
+shartrez = Ingredient.find_or_create_by!({name: 'шартрёз'})
+pure_lichi = Ingredient.find_or_create_by!({name: 'пюре личи'})
+brendy = Ingredient.find_or_create_by!({name: 'бренди'})
+absent = Ingredient.find_or_create_by!({name: 'абсент'})
+muscat_nut = Ingredient.find_or_create_by!({name: 'мускатный орех'})
+egg = Ingredient.find_or_create_by!({name: 'яйцо'})
+milk = Ingredient.find_or_create_by!({name: 'молоко'})
+cookies = Ingredient.find_or_create_by!({name: 'овсяное печенье'})
 
 sweet = Tag.find_or_create_by!({name: 'сладкий', tag_type: 'taste'})
 sour = Tag.find_or_create_by!({name: 'кислый', tag_type: 'taste'})
@@ -26,11 +39,36 @@ to_relax = Tag.find_or_create_by!({name: 'расслабиться', tag_type: '
 to_party = Tag.find_or_create_by!({name: 'вечеринка с друзьями', tag_type: 'goal'})
 to_die = Tag.find_or_create_by!({name: 'набухаться в хлам', tag_type: 'goal'})
 
-user = User.first_or_create!({
+alina = User.first_or_create!({
   email: "ialina240200@gmail.com",
   login: "alyaskana",
-  user_name: "Алина мутит шейки",
+  user_name: "Алина",
+  description: 'Развлекательное шоу Ирины Чесноковой на YouTube. В гостях звезды российского шоу-бизнеса с ЧЮ, актуальные темы и живая музыка.',
+  link: 'vk.com/alyaskana',
   password: 'qwerty',
+  avatar: File.open(File.join(Rails.root, "/app/assets/images/avatars/avatar_1.jpg")),
+  ingredients: [tonik, salt, tripple_sek, irish_cream, coffee_liquor, ice]
+})
+
+amgalan = User.first_or_create!({
+  email: "amgalan@gmail.com",
+  login: "amgalan",
+  user_name: "Амгалан",
+  description: 'Развлекательное шоу Ирины Чесноковой на YouTube. В гостях звезды российского шоу-бизнеса с ЧЮ, актуальные темы и живая музыка.',
+  link: 'vk.com/alan_amg',
+  password: 'qwerty',
+  avatar: File.open(File.join(Rails.root, "/app/assets/images/avatars/avatar_2.jpg")),
+  ingredients: [tonik, salt, tripple_sek, irish_cream, coffee_liquor, ice]
+})
+
+krawleek = User.first_or_create!({
+  email: "krawleek@gmail.com",
+  login: "krawleek",
+  user_name: "Елена",
+  description: 'Развлекательное шоу Ирины Чесноковой на YouTube. В гостях звезды российского шоу-бизнеса с ЧЮ, актуальные темы и живая музыка.',
+  link: 'vk.com/krawleek',
+  password: 'qwerty',
+  avatar: File.open(File.join(Rails.root, "/app/assets/images/avatars/avatar_3.jpg")),
   ingredients: [tonik, salt, tripple_sek, irish_cream, coffee_liquor, ice]
 })
 
@@ -40,11 +78,16 @@ end
 
 cocktails = [
   {
-    user_id: user.id,
+    user_id: alina.id,
     title: "Джин персиковый чай",
-    ingredients: [gin, ice, lemon_juice, sugar_syrup],
+    cocktail_ingredients: [
+      {ingredient: gin, amount: '40 мл'}, 
+      {ingredient: lemon_juice, amount: '30 мл'},
+      {ingredient: sugar_syrup, amount: '20 мл'},
+      {ingredient: ice, amount: ''},
+    ],
     tags: [sweet, to_relax, to_sit_well],
-    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail-1.png")),
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_1.png")),
     description: "Это очень крепкий лонг на пяти видах алкоголя. Кроме водки, джина, рома, текилы и цитрусового ликёра, туда добавляют колу и лимонный сок, так что на вкус он получается сладковато-кислым.",
     directions: [
       "Налей в шейкер сок манго 15 мл, кофейный ликер 15 мл и лимончелло 15 мл",
@@ -52,38 +95,240 @@ cocktails = [
       "Перелей через стрейнер в стопку",
       "Укрась лимонной цедрой"
     ],
-    youtube: 'oHg5SJYRHA0'
+    youtube: 'pN13U2boC-Y'
   },
   {
-    user_id: user.id,
-    title: "Сливочная мечта",
-    ingredients: [coffee_liquor, ice, tonik, tobasco],
+    user_id: alina.id,
+    title: "Lemon Drop",
+    cocktail_ingredients: [
+      {ingredient: vodka, amount: '60 мл'}, 
+      {ingredient: tripple_sek, amount: '15 мл'},
+      {ingredient: lemon_juice, amount: '30 мл'},
+      {ingredient: sugar_syrup, amount: '30 мл'},
+      {ingredient: ice, amount: ''},
+    ],
     tags: [bitter, sour, to_die],
-    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail-2.png")),
-    description: "Это очень крепкий лонг на пяти видах алкоголя. Кроме водки, джина, рома, текилы и цитрусового ликёра, туда добавляют колу и лимонный сок, так что на вкус он получается сладковато-кислым.",
-    directions: ["Налей в шейкер сок манго 15 мл, кофейный ликер 15 мл и лимончелло 15 мл",
-    "Наполни шейкер кубиками льда и взбей",
-    "Перелей через стрейнер в стопку",
-    "Укрась лимонной цедрой"]
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_2.png")),
+    description: "Lemon Drop (или Lemon Drop Martini) впервые появился в Сан-Франциско где-то в 1970-х годах. Его изобретателем считается Норман Джей Хобдей, безработный ветеран Вьетнама. Этот приятный кисло-сладкий коктейль состоит из водки, ликёра Трипл сек, лимонного сока и сахарного сиропа. ",
+    directions: [
+    "Шейкуем все ингредиенты со льдом.",
+    "Отцеживаем, с помощью стрейнера и барного сита в охлаждённую коктейльную рюмку.",
+    "Украшаем, по желанию, либо сахарной каёмкой, либо цедрой лимона.",
+    youtube: 'pN13U2boC-Y'
+    ]
   },
   {
-    user_id: user.id,
-    title: "Антифриз в огурце",
-    ingredients: [vodka, ice, tomato_juice],
+    user_id: alina.id,
+    title: "Pink Cosmo",
+    cocktail_ingredients: [
+      {ingredient: vodka, amount: '60 мл'}, 
+      {ingredient: tripple_sek, amount: '25 мл'},
+      {ingredient: lemon_juice, amount: '20 мл'},
+      {ingredient: cranberry_jelly, amount: '30 мл'},
+    ],
     tags: [bitter, sweet_sour, to_sit_well],
-    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail-3.png")),
-    description: "Это очень крепкий лонг на пяти видах алкоголя. Кроме водки, джина, рома, текилы и цитрусового ликёра, туда добавляют колу и лимонный сок, так что на вкус он получается сладковато-кислым.",
-    directions: ["Налей в шейкер сок манго 15 мл, кофейный ликер 15 мл и лимончелло 15 мл",
-    "Наполни шейкер кубиками льда и взбей",
-    "Перелей через стрейнер в стопку",
-    "Укрась лимонной цедрой"]
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_3.png")),
+    description: "Авторский коктейль Романа Табакова PINK COSMO — немного изменённый Космополитен с обычной водкой вместо цитрусовой и с клюквенным киселём вместо сока.",
+    directions: [
+    "Все ингредиенты взбить со льдом в шейкере.",
+    "Отцедить с помощью стрейнера и барного сита в охлаждённую коктейльную рюмку.",
+    ],
+    youtube: 'pN13U2boC-Y'
   },
   {
-    user_id: user.id,
+    user_id: alina.id,
+    title: "Японские тапки",
+    cocktail_ingredients: [
+      {ingredient: tripple_sek, amount: '25 мл'},
+      {ingredient: lemon_juice, amount: '20 мл'},
+      {ingredient: melon_liquor, amount: '30 мл'},
+    ],
+    tags: [bitter, sweet_sour, to_sit_well],
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_3.png")),
+    description: "Простой кисло-сладкий коктейль, известный также под именами Японский шлёпок, Японская туфелька и Японские башмачки. В коктейль входят: Трипл сек (или Куантро), дынный ликёр (или Мидори) и лимонный сок.",
+    directions: [
+    "Охлаждаем коктейльную рюмку и шейкер.",
+    "Наливаем в смесительный стакан Трипл сек, дынный ликёр и лимонный фреш.",
+    'Тщательно взбиваем в шейкере.',
+    'Освобождаем коктейльную рюмку от льда.',
+    'С помощью стрейнера и барного ситечка, отцеживаем полученный коктейль в коктейльную рюмку.',
+    'Не украшаем (но если если хорошая мараскиновая вишня, можно добавить её.'
+    ],
+    youtube: 'L4ERVvAa8Ak'
+  },
+  {
+    user_id: amgalan.id,
+    title: "Бижу",
+    cocktail_ingredients: [
+      {ingredient: gin, amount: '40 мл'}, 
+      {ingredient: red_sweet_vermut, amount: '30 мл'},
+      {ingredient: orange_bitter, amount: '20 мл'},
+      {ingredient: shartrez, amount: '1-2 капли'},
+    ],
+    tags: [sweet, to_relax, to_sit_well],
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_5.png")),
+    description: "Это очень крепкий лонг на пяти видах алкоголя. Кроме водки, джина, рома, текилы и цитрусового ликёра, туда добавляют колу и лимонный сок, так что на вкус он получается сладковато-кислым.",
+    directions: [
+      "Налей в шейкер сок манго 15 мл, кофейный ликер 15 мл и лимончелло 15 мл",
+      "Наполни шейкер кубиками льда и взбей",
+      "Перелей через стрейнер в стопку",
+      "Укрась лимонной цедрой"
+    ],
+    youtube: 'pN13U2boC-Y'
+  },
+  {
+    user_id: amgalan.id,
+    title: "Аляска",
+    cocktail_ingredients: [
+      {ingredient: gin, amount: '40 мл'}, 
+      {ingredient: orange_bitter, amount: '20 мл'},
+      {ingredient: shartrez, amount: '100 мл'},
+    ],
+    tags: [bitter, sour, to_die],
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_6.png")),
+    description: "Lemon Drop (или Lemon Drop Martini) впервые появился в Сан-Франциско где-то в 1970-х годах. Его изобретателем считается Норман Джей Хобдей, безработный ветеран Вьетнама. Этот приятный кисло-сладкий коктейль состоит из водки, ликёра Трипл сек, лимонного сока и сахарного сиропа. ",
+    directions: [
+    "Шейкуем все ингредиенты со льдом.",
+    "Отцеживаем, с помощью стрейнера и барного сита в охлаждённую коктейльную рюмку.",
+    "Украшаем, по желанию, либо сахарной каёмкой, либо цедрой лимона.",
+    youtube: 'pN13U2boC-Y'
+    ]
+  },
+  {
+    user_id: amgalan.id,
+    title: "Личи Мартини",
+    cocktail_ingredients: [
+      {ingredient: vodka, amount: '60 мл'}, 
+      {ingredient: pure_lichi, amount: '25 мл'},
+      {ingredient: lemon_juice, amount: '20 мл'},
+      {ingredient: sugar_syrup, amount: '30 мл'},
+    ],
+    tags: [bitter, sweet_sour, to_sit_well],
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_7.png")),
+    description: "Сладкий клубный коктейль из 80-90-х из водки, лимона и пюре консервированного личи. Он же — крепкий сухой коктейль с джином, саке и сиропа личи, который подавали в баре Антикварный Boutique & Bar. ",
+    directions: [
+    "Все ингредиенты взбить со льдом в шейкере.",
+    "Отцедить с помощью стрейнера и барного сита в охлаждённую коктейльную рюмку.",
+    ],
+    youtube: 'pN13U2boC-Y'
+  },
+  {
+    user_id: amgalan.id,
+    title: "Абсент Бренди Флип",
+    cocktail_ingredients: [
+      {ingredient: brendy, amount: '60 мл'},
+      {ingredient: absent, amount: '20 мл'},
+      {ingredient: muscat_nut, amount: 'для украшения'},
+    ],
+    tags: [bitter, sweet_sour, to_sit_well],
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_8.png")),
+    description: "Простой кисло-сладкий коктейль, известный также под именами Японский шлёпок, Японская туфелька и Японские башмачки. В коктейль входят: Трипл сек (или Куантро), дынный ликёр (или Мидори) и лимонный сок.",
+    directions: [
+    "Охлаждаем коктейльную рюмку и шейкер.",
+    "Наливаем в смесительный стакан Трипл сек, дынный ликёр и лимонный фреш.",
+    'Тщательно взбиваем в шейкере.',
+    'Освобождаем коктейльную рюмку от льда.',
+    'С помощью стрейнера и барного ситечка, отцеживаем полученный коктейль в коктейльную рюмку.',
+    'Не украшаем (но если если хорошая мараскиновая вишня, можно добавить её.'
+    ],
+    youtube: 'L4ERVvAa8Ak'
+  },
+  {
+    user_id: krawleek.id,
+    title: "Эгг-ног",
+    cocktail_ingredients: [
+      {ingredient: gin, amount: '40 мл'}, 
+      {ingredient: egg, amount: '1 шт'},
+      {ingredient: brendy, amount: '20 мл'},
+      {ingredient: rum, amount: '10 мл'},
+      {ingredient: milk, amount: '100 мл'},
+      {ingredient: muscat_nut, amount: 'для украшения'},
+    ],
+    tags: [sweet, to_relax, to_sit_well],
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_9.png")),
+    description: "Это очень крепкий лонг на пяти видах алкоголя. Кроме водки, джина, рома, текилы и цитрусового ликёра, туда добавляют колу и лимонный сок, так что на вкус он получается сладковато-кислым.",
+    directions: [
+      "Налей в шейкер сок манго 15 мл, кофейный ликер 15 мл и лимончелло 15 мл",
+      "Наполни шейкер кубиками льда и взбей",
+      "Перелей через стрейнер в стопку",
+      "Укрась лимонной цедрой"
+    ],
+    youtube: 'pN13U2boC-Y'
+  },
+  {
+    user_id: krawleek.id,
+    title: "Глинтвейн",
+    cocktail_ingredients: [
+      {ingredient: gin, amount: '40 мл'}, 
+      {ingredient: tripple_sek, amount: '40 мл'}, 
+      {ingredient: cranberry_jelly, amount: '40 мл'}, 
+      {ingredient: orange_bitter, amount: '20 мл'},
+      {ingredient: shartrez, amount: '100 мл'},
+      {ingredient: lime, amount: ''},
+    ],
+    tags: [bitter, sour, to_die],
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_10.png")),
+    description: "Lemon Drop (или Lemon Drop Martini) впервые появился в Сан-Франциско где-то в 1970-х годах. Его изобретателем считается Норман Джей Хобдей, безработный ветеран Вьетнама. Этот приятный кисло-сладкий коктейль состоит из водки, ликёра Трипл сек, лимонного сока и сахарного сиропа. ",
+    directions: [
+    "Шейкуем все ингредиенты со льдом.",
+    "Отцеживаем, с помощью стрейнера и барного сита в охлаждённую коктейльную рюмку.",
+    "Украшаем, по желанию, либо сахарной каёмкой, либо цедрой лимона.",
+    youtube: 'pN13U2boC-Y'
+    ]
+  },
+  {
+    user_id: krawleek.id,
+    title: "Молочный пунш «Леон»",
+    cocktail_ingredients: [
+      {ingredient: rum, amount: '60 мл'}, 
+      {ingredient: cookies, amount: '1 шт'},
+      {ingredient: lemon_juice, amount: '20 мл'},
+      {ingredient: milk, amount: '30 мл'},
+    ],
+    tags: [bitter, sweet_sour, to_sit_well],
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_11.png")),
+    description: "СКоктейль «Леон» — молочный пунш с ромом, овсяным печеньем, солёной карамелью и лимоном, который придумал для конкурса Медиа Бармен Кирилл Становнов из Екатеринбурга",
+    directions: [
+    "Все ингредиенты взбить со льдом в шейкере.",
+    "Отцедить с помощью стрейнера и барного сита в охлаждённую коктейльную рюмку.",
+    ],
+    youtube: 'pN13U2boC-Y'
+  },
+  {
+    user_id: krawleek.id,
+    title: "Tom & Jerry",
+    cocktail_ingredients: [
+      {ingredient: egg, amount: '60 мл'},
+      {ingredient: rum, amount: '20 мл'},
+      {ingredient: sugar_syrup, amount: '20 мл'},
+      {ingredient: muscat_nut, amount: 'для украшения'},
+    ],
+    tags: [bitter, sweet_sour, to_sit_well],
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_12.png")),
+    description: "Простой кисло-сладкий коктейль, известный также под именами Японский шлёпок, Японская туфелька и Японские башмачки. В коктейль входят: Трипл сек (или Куантро), дынный ликёр (или Мидори) и лимонный сок.",
+    directions: [
+    "Охлаждаем коктейльную рюмку и шейкер.",
+    "Наливаем в смесительный стакан Трипл сек, дынный ликёр и лимонный фреш.",
+    'Тщательно взбиваем в шейкере.',
+    'Освобождаем коктейльную рюмку от льда.',
+    'С помощью стрейнера и барного ситечка, отцеживаем полученный коктейль в коктейльную рюмку.',
+    'Не украшаем (но если если хорошая мараскиновая вишня, можно добавить её.'
+    ],
+    youtube: 'L4ERVvAa8Ak'
+  },
+  {
+    user_id: alina.id,
     title: "Кэнди шот",
-    ingredients: [vodka, coffee_liquor, lemon_juice],
+    cocktail_ingredients: [
+      {ingredient: egg, amount: '60 мл'},
+      {ingredient: irish_cream, amount: '20 мл'},
+      {ingredient: tonik, amount: '20 мл'},
+      {ingredient: tobasco, amount: '20 мл'},
+      {ingredient: coffee_liquor, amount: '20 мл'},
+      {ingredient: lime, amount: 'для украшения'},
+    ],
     tags: [sweet, sweet_sour, to_party],
-    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail-4.png")),
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_13.png")),
     description: "Это очень крепкий лонг на пяти видах алкоголя. Кроме водки, джина, рома, текилы и цитрусового ликёра, туда добавляют колу и лимонный сок, так что на вкус он получается сладковато-кислым.",
     directions: ["Налей в шейкер сок манго 15 мл, кофейный ликер 15 мл и лимончелло 15 мл",
     "Наполни шейкер кубиками льда и взбей",
@@ -91,11 +336,18 @@ cocktails = [
     "Укрась лимонной цедрой"]
   },
   {
-    user_id: user.id,
+    user_id: alina.id,
     title: "Лонг айленд айс ти",
-    ingredients: [vodka, salt, ice, lime, tripple_sek, tonik],
+    cocktail_ingredients: [
+      {ingredient: vodka, amount: '60 мл'},
+      {ingredient: tonik, amount: '20 мл'},
+      {ingredient: tripple_sek, amount: '20 мл'},
+      {ingredient: coffee_liquor, amount: '20 мл'},
+      {ingredient: salt, amount: ''},
+      {ingredient: ice, amount: ''},
+    ],
     tags: [sweet, sweet_sour, to_sit_well, to_relax, salty],
-    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail-1.png")),
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_14.png")),
     description: "Это очень крепкий лонг на пяти видах алкоголя. Кроме водки, джина, рома, текилы и цитрусового ликёра, туда добавляют колу и лимонный сок, так что на вкус он получается сладковато-кислым.",
     directions: ["Наполни хайбол кубиками льда доверху",
     "Налей в шейкер лимонный сок 10 мл, томатный сок 120 мл и водку 50 мл",
@@ -103,11 +355,19 @@ cocktails = [
     "Долей колу доверху и аккуратно размешай коктейльной ложкой"]
   },
   {
-    user_id: user.id,
+    user_id: alina.id,
     title: "Кровавая Мэри",
-    ingredients: [vodka, tomato_juice, salt, ice, lemon_juice, gin, tonik],
+    cocktail_ingredients: [
+      {ingredient: vodka, amount: '60 мл'},
+      {ingredient: tomato_juice, amount: '20 мл'},
+      {ingredient: lemon_juice, amount: '20 мл'},
+      {ingredient: tonik, amount: '20 мл'},
+      {ingredient: gin, amount: '20 мл'},
+      {ingredient: salt, amount: ''},
+      {ingredient: ice, amount: ''},
+    ],
     tags: [bitter, sour, to_relax, to_party],
-    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail-2.png")),
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_15.png")),
     description: "Это слабоалкогольный овощной лонг на водке с томатным соком и сельдереем. Напиток, в который также добавляют лимонный сок, табаско и ворчестер, когда-то придумали как лекарство против похмелья.",
     directions: ["Наполни хайбол кубиками льда доверху",
     "Налей в шейкер лимонный сок 10 мл, томатный сок 120 мл и водку 50 мл",
@@ -117,22 +377,31 @@ cocktails = [
     "Перелей через стрейнер в хайбол и укрась стеблем сельдерея"]
   },
   {
-    user_id: user.id,
+    user_id: alina.id,
     title: "Б-52",
-    ingredients: [coffee_liquor, irish_cream, tripple_sek],
+    cocktail_ingredients: [
+      {ingredient: coffee_liquor, amount: '60 мл'},
+      {ingredient: irish_cream, amount: '20 мл'},
+      {ingredient: tripple_sek, amount: '20 мл'},
+    ],
     tags: [sweet, to_die],
-    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail-3.png")),
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_16.png")),
     description: "Это крепкий сладкий шот на кофейном ликёре с добавлением айриш крима и трипл сека. На вкус он сладкий и сливочно-кофейный. Верхний слой шота поджигается, и коктейль нужно быстро выпить через трубочку: не только вкусно, но и зрелищно.",
     directions: ["Налей в стопку кофейный ликер 15 мл",
     "Используя коктейльную ложку, уложи слой айриш крим 15 мл и слой ликера трипл сек 15 мл",
     "Поджигай, вооружайся трубочками и угощай!"]
   },
   {
-    user_id: user.id,
+    user_id: alina.id,
     title: "Маргарита",
-    ingredients: [lime, sugar_syrup, tripple_sek, ice],
+    cocktail_ingredients: [
+      {ingredient: tripple_sek, amount: '60 мл'},
+      {ingredient: sugar_syrup, amount: '20 мл'},
+      {ingredient: lime, amount: '20 мл'},
+      {ingredient: ice, amount: ''},
+    ],
     tags: [salty, to_sit_well, bitter],
-    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/Margarita.jpg")),
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_1.jpg")),
     description: 'Это солоноватый кислый коктейль на текиле с лаймовым соком. Бармены во всем мире очень любят создавать твисты на этот классический коктейль, но окаёмка из соли практически всегда остаётся неизменным украшением "Маргариты".',
     directions: ["Сделай на бокале для маргариты соленую окаемку",
     "Налей в шейкер лаймовый сок 30 мл, сахарный сироп 10 мл, ликер трипл сек 25 мл и серебряную текилу 50 мл",
@@ -141,11 +410,16 @@ cocktails = [
     "Укрась кружком лайма"]
   },
   {
-    user_id: user.id,
+    user_id: alina.id,
     title: "Джин тоник",
-    ingredients: [ice, gin, tonik, lime],
+    cocktail_ingredients: [
+      {ingredient: tonik, amount: '60 мл'},
+      {ingredient: gin, amount: '20 мл'},
+      {ingredient: lime, amount: '20 мл'},
+      {ingredient: ice, amount: ''},
+    ],
     tags: [sweet_sour, to_party],
-    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/jin-tonik.png")),
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_2.png")),
     description: "Это бессмертный микс джина и тоника, который подается, наверное, в каждом баре Земли. Травяной и немного горький коктейль прекрасно освежает и тонизирует.",
     directions: ["Наполни хайбол кубиками льда доверху",
     "Налей джин 50 мл",
@@ -153,11 +427,17 @@ cocktails = [
     "Укрась кружками лайма"]
   },
   {
-    user_id: user.id,
+    user_id: alina.id,
     title: "Негрони",
-    ingredients: [vodka, salt, gin, tonik, sugar_syrup],
+    cocktail_ingredients: [
+      {ingredient: vodka, amount: '60 мл'},
+      {ingredient: gin, amount: '20 мл'},
+      {ingredient: tonik, amount: '20 мл'},
+      {ingredient: sugar_syrup, amount: '20 мл'},
+      {ingredient: salt, amount: ''},
+    ],
     tags: [sweet, to_sit_well, to_party, to_relax, salty],
-    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/b-52.png")),
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_3.png")),
     description: "Это очень крепкий лонг на пяти видах алкоголя. Кроме водки, джина, рома, текилы и цитрусового ликёра, туда добавляют колу и лимонный сок, так что на вкус он получается сладковато-кислым.",
     directions: ["Наполни хайбол кубиками льда доверху",
     "Налей в шейкер лимонный сок 10 мл, томатный сок 120 мл и водку 50 мл",
@@ -165,11 +445,17 @@ cocktails = [
     "Долей колу доверху и аккуратно размешай коктейльной ложкой"]
   },
   {
-    user_id: user.id,
+    user_id: alina.id,
     title: "Вера и доверие",
-    ingredients: [gin, ice, lemon_juice, tonik, coffee_liquor],
+    cocktail_ingredients: [
+      {ingredient: vodka, amount: '60 мл'},
+      {ingredient: gin, amount: '20 мл'},
+      {ingredient: lemon_juice, amount: '20 мл'},
+      {ingredient: coffee_liquor, amount: '20 мл'},
+      {ingredient: salt, amount: ''},
+    ],
     tags: [bitter, sweet, to_relax],
-    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail-4.png")),
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_4.png")),
     description: "Это слабоалкогольный овощной лонг на водке с томатным соком и сельдереем. Напиток, в который также добавляют лимонный сок, табаско и ворчестер, когда-то придумали как лекарство против похмелья.",
     directions: ["Наполни хайбол кубиками льда доверху",
     "Налей в шейкер лимонный сок 10 мл, томатный сок 120 мл и водку 50 мл",
@@ -179,22 +465,33 @@ cocktails = [
     "Перелей через стрейнер в хайбол и укрась стеблем сельдерея"]
   },
   {
-    user_id: user.id,
+    user_id: alina.id,
     title: "Испанский эг-ног",
-    ingredients: [coffee_liquor, ice, irish_cream, lemon_juice],
+    cocktail_ingredients: [
+      {ingredient: coffee_liquor, amount: '60 мл'},
+      {ingredient: irish_cream, amount: '20 мл'},
+      {ingredient: lemon_juice, amount: '20 мл'},
+      {ingredient: sugar_syrup, amount: '20 мл'},
+    ],
     tags: [sweet, to_die, bitter],
-    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail-3.png")),
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_5.png")),
     description: "Это крепкий сладкий шот на кофейном ликёре с добавлением айриш крима и трипл сека. На вкус он сладкий и сливочно-кофейный. Верхний слой шота поджигается, и коктейль нужно быстро выпить через трубочку: не только вкусно, но и зрелищно.",
     directions: ["Налей в стопку кофейный ликер 15 мл",
     "Используя коктейльную ложку, уложи слой айриш крим 15 мл и слой ликера трипл сек 15 мл",
     "Поджигай, вооружайся трубочками и угощай!"]
   },
   {
-    user_id: user.id,
+    user_id: alina.id,
     title: "Текила санрайз",
-    ingredients: [lime, tripple_sek, ice, gin,lemon_juice, sugar_syrup],
+    cocktail_ingredients: [
+      {ingredient: lemon_juice, amount: '60 мл'},
+      {ingredient: gin, amount: '20 мл'},
+      {ingredient: tripple_sek, amount: '20 мл'},
+      {ingredient: sugar_syrup, amount: '20 мл'},
+      {ingredient: lime, amount: ''},
+    ],
     tags: [sweet_sour, sweet, to_sit_well, bitter],
-    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail-2.png")),
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_6.png")),
     description: 'Это солоноватый кислый коктейль на текиле с лаймовым соком. Бармены во всем мире очень любят создавать твисты на этот классический коктейль, но окаёмка из соли практически всегда остаётся неизменным украшением "Маргариты".',
     directions: ["Сделай на бокале для маргариты соленую окаемку",
     "Налей в шейкер лаймовый сок 30 мл, сахарный сироп 10 мл, ликер трипл сек 25 мл и серебряную текилу 50 мл",
@@ -203,11 +500,17 @@ cocktails = [
     "Укрась кружком лайма"]
   },
   {
-    user_id: user.id,
+    user_id: alina.id,
     title: "Голубая лагуна",
-    ingredients: [ice, gin, tripple_sek, lemon_juice, lime],
+    cocktail_ingredients: [
+      {ingredient: tripple_sek, amount: '60 мл'},
+      {ingredient: gin, amount: '20 мл'},
+      {ingredient: lemon_juice, amount: '20 мл'},
+      {ingredient: sugar_syrup, amount: '20 мл'},
+      {ingredient: lime, amount: ''},
+    ],
     tags: [sweet_sour, to_party],
-    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/jin-tonik.png")),
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_7.png")),
     description: "Это бессмертный микс джина и тоника, который подается, наверное, в каждом баре Земли. Травяной и немного горький коктейль прекрасно освежает и тонизирует.",
     directions: ["Наполни хайбол кубиками льда доверху",
     "Налей джин 50 мл",
