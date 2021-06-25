@@ -87,7 +87,7 @@ cocktails = [
       CocktailsIngredient.new({ingredient: ice, amount: ''}),
     ],
     tags: [sweet, to_relax, to_sit_well],
-    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_1.png")),
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_16.png")),
     description: "Это очень крепкий лонг на пяти видах алкоголя. Кроме водки, джина, рома, текилы и цитрусового ликёра, туда добавляют колу и лимонный сок, так что на вкус он получается сладковато-кислым.",
     directions: [
       "Налей в шейкер сок манго 15 мл, кофейный ликер 15 мл и лимончелло 15 мл",
@@ -108,7 +108,7 @@ cocktails = [
       CocktailsIngredient.new({ingredient: ice, amount: ''}),
     ],
     tags: [bitter, sour, to_die],
-    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_2.png")),
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_11.png")),
     description: "Lemon Drop (или Lemon Drop Martini) впервые появился в Сан-Франциско где-то в 1970-х годах. Его изобретателем считается Норман Джей Хобдей, безработный ветеран Вьетнама. Этот приятный кисло-сладкий коктейль состоит из водки, ликёра Трипл сек, лимонного сока и сахарного сиропа. ",
     directions: [
     "Шейкуем все ингредиенты со льдом.",
@@ -127,7 +127,7 @@ cocktails = [
       CocktailsIngredient.new({ingredient: cranberry_jelly, amount: '30 мл'}),
     ],
     tags: [bitter, sweet_sour, to_sit_well],
-    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_3.png")),
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_14.png")),
     description: "Авторский коктейль Романа Табакова PINK COSMO — немного изменённый Космополитен с обычной водкой вместо цитрусовой и с клюквенным киселём вместо сока.",
     directions: [
     "Все ингредиенты взбить со льдом в шейкере.",
@@ -144,7 +144,7 @@ cocktails = [
       CocktailsIngredient.new({ingredient: melon_liquor, amount: '30 мл'}),
     ],
     tags: [bitter, sweet_sour, to_sit_well],
-    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_3.png")),
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_13.png")),
     description: "Простой кисло-сладкий коктейль, известный также под именами Японский шлёпок, Японская туфелька и Японские башмачки. В коктейль входят: Трипл сек (или Куантро), дынный ликёр (или Мидори) и лимонный сок.",
     directions: [
     "Охлаждаем коктейльную рюмку и шейкер.",
@@ -166,7 +166,7 @@ cocktails = [
       CocktailsIngredient.new({ingredient: shartrez, amount: '1-2 капли'}),
     ],
     tags: [sweet, to_relax, to_sit_well],
-    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_5.png")),
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_12.png")),
     description: "Это очень крепкий лонг на пяти видах алкоголя. Кроме водки, джина, рома, текилы и цитрусового ликёра, туда добавляют колу и лимонный сок, так что на вкус он получается сладковато-кислым.",
     directions: [
       "Налей в шейкер сок манго 15 мл, кофейный ликер 15 мл и лимончелло 15 мл",
@@ -185,7 +185,7 @@ cocktails = [
       CocktailsIngredient.new({ingredient: shartrez, amount: '100 мл'}),
     ],
     tags: [bitter, sour, to_die],
-    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_6.png")),
+    image: File.open(File.join(Rails.root, "/app/assets/images/cocktails/cocktail_9.png")),
     description: "Lemon Drop (или Lemon Drop Martini) впервые появился в Сан-Франциско где-то в 1970-х годах. Его изобретателем считается Норман Джей Хобдей, безработный ветеран Вьетнама. Этот приятный кисло-сладкий коктейль состоит из водки, ликёра Трипл сек, лимонного сока и сахарного сиропа. ",
     directions: [
     "Шейкуем все ингредиенты со льдом.",
