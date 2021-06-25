@@ -22,6 +22,7 @@ Rails.application.routes.draw do
         post :unfavorite
         post :taste
         post :untaste
+        get :search
       end
     end
 

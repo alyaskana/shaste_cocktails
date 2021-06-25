@@ -6,6 +6,11 @@ class Api::CocktailsController < ApplicationController
     render :index, locals: {cocktails: cocktails}
   end
 
+  def search
+    cocktails = Cocktail.where("title ILIKE ?", "%#{params[:search]}%")
+    render :index, locals: {cocktails: cocktails}
+  end
+
   def show
     cocktail = Cocktail.includes(:ingredients).find(params[:id])
     render :show, locals: {cocktail: cocktail, similar_cocktails: similar_cocktails(cocktail)}
