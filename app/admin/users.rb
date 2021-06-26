@@ -24,6 +24,12 @@ ActiveAdmin.register User do
     column :login
     column :user_name
     column :email
+    column :followers do |user|
+      user.followers.count
+    end
+    column :followings do |user|
+      user.followings.count
+    end
     column :created_at
 
     actions
@@ -38,6 +44,25 @@ ActiveAdmin.register User do
       row :login
       row :user_name
       row :email
+      row :posts do |user|
+        user.posts.count
+      end
+      row :followers do |user|
+        user.followers.count
+      end
+      row :followings do |user|
+        user.followings.count
+      end
+      row :cocktails
+      row :tasted do |user|
+        user.tasted.count
+      end
+      row :likes do |user|
+        user.likes.count
+      end
+      row :likes do |user|
+        user.favorites.count
+      end
       row :created_at
     end
   end
