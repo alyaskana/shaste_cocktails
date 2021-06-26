@@ -532,3 +532,5 @@ end
 CocktailsIngredient.where(ingredient: [ice, salt]).each do |ci|
   ci.update(amount: "")
 end
+
+AdminUser.first_or_create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

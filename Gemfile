@@ -26,6 +26,9 @@ gem 'rack-cors'
 gem 'enumerize'
 gem 'rack-cors'
 gem 'carrierwave-aws'
+gem 'activeadmin'
+gem 'arctic_admin'
+
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
