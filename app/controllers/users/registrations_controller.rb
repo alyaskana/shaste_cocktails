@@ -7,6 +7,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def create
     build_resource(sign_up_params)
+    resource.avatar = File.open(File.join(Rails.root, "app/assets/images/fallback/default_avatar.png"))
     if resource.save
       sign_up(resource_name, resource) if resource.persisted?
       render json: resource.to_json
