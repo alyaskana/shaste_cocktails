@@ -20,8 +20,19 @@ ActiveAdmin.register Cocktail do
     column :id
     column :user
     column :title
-    column :image do |user|
-      image_tag user.image.url(:thumb)
+    column :image do |cocktail|
+      image_tag cocktail.image.url(:thumb)
+    end
+    column :ingredients
+    column :tags
+    column :likes_count do |cocktail|
+      cocktail.liked_users.count
+    end
+    column :tastes_count do |cocktail|
+      cocktail.tasted_users.count
+    end
+    column :favorites_count do |cocktail|
+      cocktail.favorited_users.count
     end
     column :created_at
 
@@ -38,7 +49,18 @@ ActiveAdmin.register Cocktail do
       end
       row :description
       row :directions
+      row :tags
       row :youtube
+      row :updated_at
+      row :likes_count do |cocktail|
+        cocktail.liked_users.count
+      end
+      row :tastes_count do |cocktail|
+        cocktail.tasted_users.count
+      end
+      row :favorites_count do |cocktail|
+        cocktail.favorited_users.count
+      end
       row :updated_at
       row :created_at
     end
@@ -51,6 +73,7 @@ ActiveAdmin.register Cocktail do
       input :title
       input :image, :hint => image_tag(f.object.image.url(:thumb))
       input :description, input_html: { rows: 5}
+      input :tags
       input :youtube
     end  
     f.actions
